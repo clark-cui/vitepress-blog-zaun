@@ -6,6 +6,10 @@ declare module "*.css" {
     const str: string;
     export default str;
 }
+declare module "*.scss" {
+    const str: string;
+    export default str;
+}
 declare module "*.json" {
     const str: string;
     export default str;

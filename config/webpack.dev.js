@@ -3,10 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     mode: 'development',
     entry: {
-        index: './src/index.ts',
+        index: ['./src/index.ts','./src/index.scss'],
     },
 
     devtool: 'inline-source-map',
@@ -34,9 +36,14 @@ module.exports = {
             //处理css
             {
                 test: /\.css$/,
-                use: [{
+                use: [
+                    //style-loader于mini二选一，生产选mini,dev选style
+                    {
                         loader: 'style-loader'
                     },
+                    // {
+                    //    loader:MiniCssExtractPlugin.loader
+                    // },
                     {
                         loader: 'css-loader',
                     },
@@ -46,6 +53,10 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
+                //style-loader于mini二选一，生产选mini,dev选style
+                // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+                //   'css-loader',
+                //   'sass-loader',
             },
             //处理图片
             {
@@ -78,6 +89,9 @@ module.exports = {
             template: './src/index.html', // 我们原来的index.html，作为模板
 
         }),
+        // new MiniCssExtractPlugin({
+        //     filename: `[name].css` //name of the chunk
+        // })
     ],
     output: {
         filename: '[name].bundle.js',
