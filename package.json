@@ -1,0 +1,40 @@
+{
+  "name": "homesite",
+  "sideEffects": false,
+  "version": "1.0.0",
+  "description": "clark-cui home",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --open --config ./config/webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack  --config ./config/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clark-cui/homeSite.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "clark-cui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clark-cui/homeSite/issues"
+  },
+  "homepage": "https://github.com/clark-cui/homeSite#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.1",
+    "sass": "^1.32.2",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3",
+    "webpack": "^5.12.3",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
+  },
+  "dependencies": {}
+}
