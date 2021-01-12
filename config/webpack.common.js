@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //抽离css
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); //压缩css
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin"); //压缩html
 const TerserPlugin = require("terser-webpack-plugin"); //压缩js(webpack v5自带)
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin'); //压缩图片
+
 module.exports = {
     mode: 'production',
     entry: {
@@ -41,8 +43,18 @@ module.exports = {
             //处理图片
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
+                use: [{
+                        loader: 'file-loader',
+                    },
+                    {
+                        loader: ImageMinimizerPlugin.loader,
+                        options: {
+                            severityError: 'warning', // Ignore errors on corrupted images
+                            minimizerOptions: {
+                                plugins: ['gifsicle'],
+                            },
+                        },
+                    },
                 ]
             },
             //处理字体
@@ -80,12 +92,34 @@ module.exports = {
     optimization: {
         minimize: true, // 使用 TerserPlugin 压缩 bundle
         minimizer: [
-            new HtmlMinimizerPlugin(),//压缩html
-            new TerserPlugin({
-              }),//压缩js
+            new HtmlMinimizerPlugin(), //压缩html
+            new TerserPlugin({}), //压缩js
             new CssMinimizerPlugin({
                 cache: true,
-            }) //压缩css
+            }), //压缩css
+            new ImageMinimizerPlugin({
+                minimizerOptions: {
+                    plugins: [
+                        ['gifsicle', {
+                            interlaced: true
+                        }],
+                        ['jpegtran', {
+                            progressive: true
+                        }],
+                        ['optipng', {
+                            optimizationLevel: 5
+                        }],
+                        [
+                            'svgo',
+                            {
+                                plugins: [{
+                                    removeViewBox: false,
+                                }, ],
+                            },
+                        ],
+                    ],
+                },
+            }),
         ],
         runtimeChunk: false,
     },
