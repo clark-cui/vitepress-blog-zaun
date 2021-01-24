@@ -1,4 +1,4 @@
-import printMe from "../utils/test"
+import printMe from "../src/scripts/test"
 import cardFirst from "../assets/covid-19.png"
 import cardSecond from "../assets/python.png"
 

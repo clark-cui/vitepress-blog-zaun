@@ -11,7 +11,7 @@
     },
     "include": [
         "./src/**/*"
-    ],
+, "resources/GPUComputationRenderer.js", "resources/dat.gui.module.js", "resources/three.module.js", "resources/stats.module.js", "entrance/index.ts", "global.d.ts"    ],
     "exclude": [
         "node_modules",
         "dist",

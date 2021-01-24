@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --open --config ./build/webpack.dev.js",
+    "bird": "webpack serve --open --config ./build/webpack.bird.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack  --config ./build/webpack.build.js"
   },
@@ -23,6 +24,11 @@
   },
   "homepage": "https://github.com/clark-cui/homeSite#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/runtime": "^7.12.5",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "css-minimizer-webpack-plugin": "^1.2.0",
