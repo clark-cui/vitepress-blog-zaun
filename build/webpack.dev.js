@@ -3,12 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
     entry: {
-        index: ['./src/index.ts','./src/index.scss'],
+        homeSite: ['./src/scripts/index.ts', './src/scss/index.scss']
     },
 
     devtool: 'inline-source-map',
@@ -16,7 +15,7 @@ module.exports = {
         port: 1099,
         contentBase: __dirname + 'dist',
         hot: true,
-        // openPage: './dist/index.html',
+        openPage: 'homeSite.html',
         watchOptions: {
             ignored: /node_modules/
         },
@@ -37,13 +36,11 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    //style-loader于mini二选一，生产选mini,dev选style
+
                     {
                         loader: 'style-loader'
                     },
-                    // {
-                    //    loader:MiniCssExtractPlugin.loader
-                    // },
+
                     {
                         loader: 'css-loader',
                     },
@@ -53,10 +50,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
-                //style-loader于mini二选一，生产选mini,dev选style
-                // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-                //   'css-loader',
-                //   'sass-loader',
+
             },
             //处理图片
             {
@@ -84,18 +78,20 @@ module.exports = {
         new CleanWebpackPlugin(),
         //匹配htmlY与js
         new HtmlWebpackPlugin({
-            title: 'Output Management',
-            filename: 'index.html', // dist目录下生成的文件名
-            template: './src/index.html', // 我们原来的index.html，作为模板
+            title: 'homeSite',
+            filename: 'homeSite.html', // dist目录下生成的文件名
+            template: './entrance/index.html' // 我们原来的index.html，作为模板
 
         }),
-        // new MiniCssExtractPlugin({
-        //     filename: `[name].css` //name of the chunk
-        // })
+     
     ],
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, '../dist')
+        filename: '[name].js',
+        path: path.resolve(__dirname, '../dist'),
+        library: 'HomeSite',
+        libraryTarget: 'umd',
+        libraryExport: 'default',
+        umdNamedDefine: true,
     },
     optimization: {
         runtimeChunk: 'single',
