@@ -12,7 +12,7 @@ module.exports = {
 
     devtool: 'inline-source-map',
     devServer: {
-        //使用Ip
+        // 使用Ip
         // useLocalIp: true,
         // host: '0.0.0.0',
         port: 1099,
@@ -22,20 +22,20 @@ module.exports = {
         watchOptions: {
             ignored: /node_modules/
         },
-        //proxy只能为string/object,不能用webpack的数组写法
+        // proxy只能为string/object,不能用webpack的数组写法
         proxy: {
 
         },
     },
     module: {
         rules: [
-            //处理ts
+            // 处理ts
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
             },
-            //处理js
+            // 处理js
             {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
@@ -48,7 +48,7 @@ module.exports = {
                     }
                 }
             },
-            //处理css
+            // 处理css
             {
                 test: /\.css$/,
                 use: [
@@ -62,20 +62,20 @@ module.exports = {
                     },
                 ],
             },
-            //处理scss
+            // 处理scss
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
 
             },
-            //处理图片
+            // 处理图片
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     'file-loader'
                 ]
             },
-            //处理字体
+            // 处理字体
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
@@ -90,9 +90,9 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [
-        //清理dist
+        // 清理dist
         new CleanWebpackPlugin(),
-        //匹配htmlY与js
+        // 匹配htmlY与js
         new HtmlWebpackPlugin({
             title: 'birds',
             filename: 'birds.html', // dist目录下生成的文件名
