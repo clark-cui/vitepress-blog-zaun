@@ -1,10 +1,13 @@
 
 import '../src/scss/birds.css'
-
+import test from '../src/scripts/test'
 import * as THREE from '../resources/three.module.js';
 // import Stats from '../resources/stats.module.js';
 // import { GUI } from '../resources/dat.gui.module.js';
 import { GPUComputationRenderer } from '../resources/GPUComputationRenderer.js';
+
+
+test();
 
 /* TEXTURE WIDTH FOR SIMULATION */
 const WIDTH = 32;
@@ -124,7 +127,8 @@ animate();
 
 function init() {
 
-    container = document.createElement('div');
+    // container = document.createElement('div');
+    container = document.getElementsByTagName('div')[0];
     document.body.appendChild(container);
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 3000);

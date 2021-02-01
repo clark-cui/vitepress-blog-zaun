@@ -7,15 +7,18 @@ const {
 module.exports = {
     mode: 'development',
     entry: {
-        homeSite: ['./src/scripts/index.ts', './src/scss/index.scss']
+        birds: ['./entrance/birds.js']
     },
 
     devtool: 'inline-source-map',
     devServer: {
+        // 使用Ip
+        // useLocalIp: true,
+        // host: '0.0.0.0',
         port: 1099,
         contentBase: __dirname + 'dist',
         hot: true,
-        openPage: 'homeSite.html',
+        openPage: 'birds.html',
         watchOptions: {
             ignored: /node_modules/
         },
@@ -31,6 +34,19 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
+            },
+            // 处理js
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime',],
+                        // cacheDirectory: true
+                    }
+                }
             },
             // 处理css
             {
@@ -78,9 +94,9 @@ module.exports = {
         new CleanWebpackPlugin(),
         // 匹配htmlY与js
         new HtmlWebpackPlugin({
-            title: 'homeSite',
-            filename: 'homeSite.html', // dist目录下生成的文件名
-            template: './entrance/index.html' // 我们原来的index.html，作为模板
+            title: 'birds',
+            filename: 'birds.html', // dist目录下生成的文件名
+            template: './views/birds.html' // 我们原来的index.html，作为模板
 
         }),
 
@@ -88,7 +104,8 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, '../dist'),
-        library: 'HomeSite',
+        library: 'birds',
+        publicPath: '/',
         libraryTarget: 'umd',
         libraryExport: 'default',
         umdNamedDefine: true,

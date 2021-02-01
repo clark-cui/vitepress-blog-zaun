@@ -1,299 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>three.js webgl - gpgpu - flocking</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<!-- <link type="text/css" rel="stylesheet" href="../src/scss/birds.css"> -->
-		<style>
-			body {
-				background-color: #fff;
-				color: #444;
-			}
-			a {
-				color:#08f;
-			}
-		</style>
-	</head>
-	<body>
+  <head>
+    <title>clark-cui</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+    <div class="home">
+      <h1>Home</h1>
+      <img src="" alt="github" title="github" id='github' />
+    </div>
+    <!-- shader for bird's position -->
+    <script id="fragmentShaderPosition" type="x-shader/x-fragment">
 
-		<!-- <div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - webgl gpgpu birds<br/>
-			Move mouse to disturb birds.
-		</div> -->
+      uniform float time;
+      uniform float delta;
 
-		<!--
-		TODO: If you're reading this, you may wish to improve this example by
-			- Create a better shading for the birds?
-		-->
+      void main()	{
 
-		<!-- shader for bird's position -->
-		<script id="fragmentShaderPosition" type="x-shader/x-fragment">
+      	vec2 uv = gl_FragCoord.xy / resolution.xy;
+      	vec4 tmpPos = texture2D( texturePosition, uv );
+      	vec3 position = tmpPos.xyz;
+      	vec3 velocity = texture2D( textureVelocity, uv ).xyz;
 
-			uniform float time;
-			uniform float delta;
+      	float phase = tmpPos.w;
 
-			void main()	{
+      	phase = mod( ( phase + delta +
+      		length( velocity.xz ) * delta * 3. +
+      		max( velocity.y, 0.0 ) * delta * 6. ), 62.83 );
 
-				vec2 uv = gl_FragCoord.xy / resolution.xy;
-				vec4 tmpPos = texture2D( texturePosition, uv );
-				vec3 position = tmpPos.xyz;
-				vec3 velocity = texture2D( textureVelocity, uv ).xyz;
+      	gl_FragColor = vec4( position + velocity * delta * 15. , phase );
 
-				float phase = tmpPos.w;
+      }
+    </script>
 
-				phase = mod( ( phase + delta +
-					length( velocity.xz ) * delta * 3. +
-					max( velocity.y, 0.0 ) * delta * 6. ), 62.83 );
+    <!-- shader for bird's velocity -->
+    <script id="fragmentShaderVelocity" type="x-shader/x-fragment">
 
-				gl_FragColor = vec4( position + velocity * delta * 15. , phase );
+      uniform float time;
+      uniform float testing;
+      uniform float delta; // about 0.016
+      uniform float separationDistance; // 20
+      uniform float alignmentDistance; // 40
+      uniform float cohesionDistance; //
+      uniform float freedomFactor;
+      uniform vec3 predator;
 
-			}
+      const float width = resolution.x;
+      const float height = resolution.y;
 
-		</script>
+      const float PI = 3.141592653589793;
+      const float PI_2 = PI * 2.0;
+      // const float VISION = PI * 0.55;
 
-		<!-- shader for bird's velocity -->
-		<script id="fragmentShaderVelocity" type="x-shader/x-fragment">
+      float zoneRadius = 40.0;
+      float zoneRadiusSquared = 1600.0;
 
-			uniform float time;
-			uniform float testing;
-			uniform float delta; // about 0.016
-			uniform float separationDistance; // 20
-			uniform float alignmentDistance; // 40
-			uniform float cohesionDistance; //
-			uniform float freedomFactor;
-			uniform vec3 predator;
+      float separationThresh = 0.45;
+      float alignmentThresh = 0.65;
 
-			const float width = resolution.x;
-			const float height = resolution.y;
+      const float UPPER_BOUNDS = BOUNDS;
+      const float LOWER_BOUNDS = -UPPER_BOUNDS;
 
-			const float PI = 3.141592653589793;
-			const float PI_2 = PI * 2.0;
-			// const float VISION = PI * 0.55;
+      const float SPEED_LIMIT = 9.0;
 
-			float zoneRadius = 40.0;
-			float zoneRadiusSquared = 1600.0;
+      float rand( vec2 co ){
+      	return fract( sin( dot( co.xy, vec2(12.9898,78.233) ) ) * 43758.5453 );
+      }
 
-			float separationThresh = 0.45;
-			float alignmentThresh = 0.65;
+      void main() {
 
-			const float UPPER_BOUNDS = BOUNDS;
-			const float LOWER_BOUNDS = -UPPER_BOUNDS;
+      	zoneRadius = separationDistance + alignmentDistance + cohesionDistance;
+      	separationThresh = separationDistance / zoneRadius;
+      	alignmentThresh = ( separationDistance + alignmentDistance ) / zoneRadius;
+      	zoneRadiusSquared = zoneRadius * zoneRadius;
 
-			const float SPEED_LIMIT = 9.0;
 
-			float rand( vec2 co ){
-				return fract( sin( dot( co.xy, vec2(12.9898,78.233) ) ) * 43758.5453 );
-			}
+      	vec2 uv = gl_FragCoord.xy / resolution.xy;
+      	vec3 birdPosition, birdVelocity;
 
-			void main() {
+      	vec3 selfPosition = texture2D( texturePosition, uv ).xyz;
+      	vec3 selfVelocity = texture2D( textureVelocity, uv ).xyz;
 
-				zoneRadius = separationDistance + alignmentDistance + cohesionDistance;
-				separationThresh = separationDistance / zoneRadius;
-				alignmentThresh = ( separationDistance + alignmentDistance ) / zoneRadius;
-				zoneRadiusSquared = zoneRadius * zoneRadius;
+      	float dist;
+      	vec3 dir; // direction
+      	float distSquared;
 
+      	float separationSquared = separationDistance * separationDistance;
+      	float cohesionSquared = cohesionDistance * cohesionDistance;
 
-				vec2 uv = gl_FragCoord.xy / resolution.xy;
-				vec3 birdPosition, birdVelocity;
+      	float f;
+      	float percent;
 
-				vec3 selfPosition = texture2D( texturePosition, uv ).xyz;
-				vec3 selfVelocity = texture2D( textureVelocity, uv ).xyz;
+      	vec3 velocity = selfVelocity;
 
-				float dist;
-				vec3 dir; // direction
-				float distSquared;
+      	float limit = SPEED_LIMIT;
 
-				float separationSquared = separationDistance * separationDistance;
-				float cohesionSquared = cohesionDistance * cohesionDistance;
+      	dir = predator * UPPER_BOUNDS - selfPosition;
+      	dir.z = 0.;
+      	// dir.z *= 0.6;
+      	dist = length( dir );
+      	distSquared = dist * dist;
 
-				float f;
-				float percent;
+      	float preyRadius = 150.0;
+      	float preyRadiusSq = preyRadius * preyRadius;
 
-				vec3 velocity = selfVelocity;
 
-				float limit = SPEED_LIMIT;
+      	// move birds away from predator
+      	if ( dist < preyRadius ) {
 
-				dir = predator * UPPER_BOUNDS - selfPosition;
-				dir.z = 0.;
-				// dir.z *= 0.6;
-				dist = length( dir );
-				distSquared = dist * dist;
+      		f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
+      		velocity += normalize( dir ) * f;
+      		limit += 5.0;
+      	}
 
-				float preyRadius = 150.0;
-				float preyRadiusSq = preyRadius * preyRadius;
 
+      	// if (testing == 0.0) {}
+      	// if ( rand( uv + time ) < freedomFactor ) {}
 
-				// move birds away from predator
-				if ( dist < preyRadius ) {
 
-					f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
-					velocity += normalize( dir ) * f;
-					limit += 5.0;
-				}
+      	// Attract flocks to the center
+      	vec3 central = vec3( 0., 0., 0. );
+      	dir = selfPosition - central;
+      	dist = length( dir );
 
+      	dir.y *= 2.5;
+      	velocity -= normalize( dir ) * delta * 5.;
 
-				// if (testing == 0.0) {}
-				// if ( rand( uv + time ) < freedomFactor ) {}
+      	for ( float y = 0.0; y < height; y++ ) {
+      		for ( float x = 0.0; x < width; x++ ) {
 
+      			vec2 ref = vec2( x + 0.5, y + 0.5 ) / resolution.xy;
+      			birdPosition = texture2D( texturePosition, ref ).xyz;
 
-				// Attract flocks to the center
-				vec3 central = vec3( 0., 0., 0. );
-				dir = selfPosition - central;
-				dist = length( dir );
+      			dir = birdPosition - selfPosition;
+      			dist = length( dir );
 
-				dir.y *= 2.5;
-				velocity -= normalize( dir ) * delta * 5.;
+      			if ( dist < 0.0001 ) continue;
 
-				for ( float y = 0.0; y < height; y++ ) {
-					for ( float x = 0.0; x < width; x++ ) {
+      			distSquared = dist * dist;
 
-						vec2 ref = vec2( x + 0.5, y + 0.5 ) / resolution.xy;
-						birdPosition = texture2D( texturePosition, ref ).xyz;
+      			if ( distSquared > zoneRadiusSquared ) continue;
 
-						dir = birdPosition - selfPosition;
-						dist = length( dir );
+      			percent = distSquared / zoneRadiusSquared;
 
-						if ( dist < 0.0001 ) continue;
+      			if ( percent < separationThresh ) { // low
 
-						distSquared = dist * dist;
+      				// Separation - Move apart for comfort
+      				f = ( separationThresh / percent - 1.0 ) * delta;
+      				velocity -= normalize( dir ) * f;
 
-						if ( distSquared > zoneRadiusSquared ) continue;
+      			} else if ( percent < alignmentThresh ) { // high
 
-						percent = distSquared / zoneRadiusSquared;
+      				// Alignment - fly the same direction
+      				float threshDelta = alignmentThresh - separationThresh;
+      				float adjustedPercent = ( percent - separationThresh ) / threshDelta;
 
-						if ( percent < separationThresh ) { // low
+      				birdVelocity = texture2D( textureVelocity, ref ).xyz;
 
-							// Separation - Move apart for comfort
-							f = ( separationThresh / percent - 1.0 ) * delta;
-							velocity -= normalize( dir ) * f;
+      				f = ( 0.5 - cos( adjustedPercent * PI_2 ) * 0.5 + 0.5 ) * delta;
+      				velocity += normalize( birdVelocity ) * f;
 
-						} else if ( percent < alignmentThresh ) { // high
+      			} else {
 
-							// Alignment - fly the same direction
-							float threshDelta = alignmentThresh - separationThresh;
-							float adjustedPercent = ( percent - separationThresh ) / threshDelta;
+      				// Attraction / Cohesion - move closer
+      				float threshDelta = 1.0 - alignmentThresh;
+      				float adjustedPercent;
+      				if( threshDelta == 0. ) adjustedPercent = 1.;
+      				else adjustedPercent = ( percent - alignmentThresh ) / threshDelta;
 
-							birdVelocity = texture2D( textureVelocity, ref ).xyz;
+      				f = ( 0.5 - ( cos( adjustedPercent * PI_2 ) * -0.5 + 0.5 ) ) * delta;
 
-							f = ( 0.5 - cos( adjustedPercent * PI_2 ) * 0.5 + 0.5 ) * delta;
-							velocity += normalize( birdVelocity ) * f;
+      				velocity += normalize( dir ) * f;
 
-						} else {
+      			}
 
-							// Attraction / Cohesion - move closer
-							float threshDelta = 1.0 - alignmentThresh;
-							float adjustedPercent;
-							if( threshDelta == 0. ) adjustedPercent = 1.;
-							else adjustedPercent = ( percent - alignmentThresh ) / threshDelta;
+      		}
 
-							f = ( 0.5 - ( cos( adjustedPercent * PI_2 ) * -0.5 + 0.5 ) ) * delta;
+      	}
 
-							velocity += normalize( dir ) * f;
 
-						}
 
-					}
+      	// this make tends to fly around than down or up
+      	// if (velocity.y > 0.) velocity.y *= (1. - 0.2 * delta);
 
-				}
+      	// Speed Limits
+      	if ( length( velocity ) > limit ) {
+      		velocity = normalize( velocity ) * limit;
+      	}
 
+      	gl_FragColor = vec4( velocity, 1.0 );
 
+      }
+    </script>
 
-				// this make tends to fly around than down or up
-				// if (velocity.y > 0.) velocity.y *= (1. - 0.2 * delta);
+    <script type="x-shader/x-vertex" id="birdVS">
 
-				// Speed Limits
-				if ( length( velocity ) > limit ) {
-					velocity = normalize( velocity ) * limit;
-				}
+      attribute vec2 reference;
+      attribute float birdVertex;
 
-				gl_FragColor = vec4( velocity, 1.0 );
+      attribute vec3 birdColor;
 
-			}
+      uniform sampler2D texturePosition;
+      uniform sampler2D textureVelocity;
 
-		</script>
+      varying vec4 vColor;
+      varying float z;
 
-		<script type="x-shader/x-vertex" id="birdVS">
+      uniform float time;
 
-			attribute vec2 reference;
-			attribute float birdVertex;
+      void main() {
 
-			attribute vec3 birdColor;
+      	vec4 tmpPos = texture2D( texturePosition, reference );
+      	vec3 pos = tmpPos.xyz;
+      	vec3 velocity = normalize(texture2D( textureVelocity, reference ).xyz);
 
-			uniform sampler2D texturePosition;
-			uniform sampler2D textureVelocity;
+      	vec3 newPosition = position;
 
-			varying vec4 vColor;
-			varying float z;
+      	if ( birdVertex == 4.0 || birdVertex == 7.0 ) {
+      		// flap wings
+      		newPosition.y = sin( tmpPos.w ) * 5.;
+      	}
 
-			uniform float time;
+      	newPosition = mat3( modelMatrix ) * newPosition;
 
-			void main() {
 
-				vec4 tmpPos = texture2D( texturePosition, reference );
-				vec3 pos = tmpPos.xyz;
-				vec3 velocity = normalize(texture2D( textureVelocity, reference ).xyz);
+      	velocity.z *= -1.;
+      	float xz = length( velocity.xz );
+      	float xyz = 1.;
+      	float x = sqrt( 1. - velocity.y * velocity.y );
 
-				vec3 newPosition = position;
+      	float cosry = velocity.x / xz;
+      	float sinry = velocity.z / xz;
 
-				if ( birdVertex == 4.0 || birdVertex == 7.0 ) {
-					// flap wings
-					newPosition.y = sin( tmpPos.w ) * 5.;
-				}
+      	float cosrz = x / xyz;
+      	float sinrz = velocity.y / xyz;
 
-				newPosition = mat3( modelMatrix ) * newPosition;
+      	mat3 maty =  mat3(
+      		cosry, 0, -sinry,
+      		0    , 1, 0     ,
+      		sinry, 0, cosry
 
+      	);
 
-				velocity.z *= -1.;
-				float xz = length( velocity.xz );
-				float xyz = 1.;
-				float x = sqrt( 1. - velocity.y * velocity.y );
+      	mat3 matz =  mat3(
+      		cosrz , sinrz, 0,
+      		-sinrz, cosrz, 0,
+      		0     , 0    , 1
+      	);
 
-				float cosry = velocity.x / xz;
-				float sinry = velocity.z / xz;
+      	newPosition =  maty * matz * newPosition;
+      	newPosition += pos;
 
-				float cosrz = x / xyz;
-				float sinrz = velocity.y / xyz;
+      	z = newPosition.z;
 
-				mat3 maty =  mat3(
-					cosry, 0, -sinry,
-					0    , 1, 0     ,
-					sinry, 0, cosry
+      	vColor = vec4( birdColor, 1.0 );
+      	gl_Position = projectionMatrix *  viewMatrix  * vec4( newPosition, 1.0 );
+      }
+    </script>
 
-				);
+    <!-- bird geometry shader -->
+    <script type="x-shader/x-fragment" id="birdFS">
 
-				mat3 matz =  mat3(
-					cosrz , sinrz, 0,
-					-sinrz, cosrz, 0,
-					0     , 0    , 1
-				);
+      varying vec4 vColor;
+      varying float z;
 
-				newPosition =  maty * matz * newPosition;
-				newPosition += pos;
+      uniform vec3 color;
 
-				z = newPosition.z;
+      void main() {
+      	// Fake colors for now
+      	float z2 = 0.2 + ( 1000. - z ) / 1000. * vColor.x;
+      	gl_FragColor = vec4( z2, z2, z2, 1. );
 
-				vColor = vec4( birdColor, 1.0 );
-				gl_Position = projectionMatrix *  viewMatrix  * vec4( newPosition, 1.0 );
-			}
-
-		</script>
-
-		<!-- bird geometry shader -->
-		<script type="x-shader/x-fragment" id="birdFS">
-
-			varying vec4 vColor;
-			varying float z;
-
-			uniform vec3 color;
-
-			void main() {
-				// Fake colors for now
-				float z2 = 0.2 + ( 1000. - z ) / 1000. * vColor.x;
-				gl_FragColor = vec4( z2, z2, z2, 1. );
-
-			}
-
-		</script>
-	</body>
+      }
+    </script>
+  </body>
 </html>
