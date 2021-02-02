@@ -1,39 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>clark-cui</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-  </head>
 
-  <body>
-    <div class="home" style="display: none;">
-      <section class="tabPart">
-        <a class="tab tabFirst" href="https://github.com/clark-cui/">
-          <h5>github</h5>
-          <img src="" alt="github" title="github" id="github" />
-        </a>
-        <a class="tab tabSecond" href="https://blog.clark-cui.top/">
-          <h5>blog</h5>
-          <img src="" alt="blog" title="blog" id="blog" />
-        </a>
-        <a class="tab tabThird" href="https://note.clark-cui.top/">
-          <h5>note</h5>
-          <img src="" alt="note" title="note" id="note" />
-        </a>
-        <a class="tab tabFourth" href="https://box.clark-cui.top/">
-          <h5>box</h5>
-          <img src="" alt="box" title="box" id="box" />
-        </a>
-      </section>
-      <footer>
-        <a href="http://beian.miit.gov.cn/" target="_blank">滇ICP备20001977号</a>
-      </footer>
-    </div>
-    <!-- shader for bird's position -->
-    <script id="fragmentShaderPosition" type="x-shader/x-fragment">
+<head>
+	<title>clark-cui</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
 
-      uniform float time;
+<body>
+	<div class="home" style="display: none;">
+		<section class="tabPart">
+			<a class="tab tabFirst" href="https://github.com/clark-cui/">
+				<h5>github</h5>
+				<img src="" alt="github" title="github" id="github" />
+			</a>
+			<a class="tab tabSecond" href="https://blog.clark-cui.top/">
+				<h5>blog</h5>
+				<img src="" alt="blog" title="blog" id="blog" />
+			</a>
+			<a class="tab tabThird" href="https://note.clark-cui.top/">
+				<h5>note</h5>
+				<img src="" alt="note" title="note" id="note" />
+			</a>
+			<a class="tab tabFourth" href="https://box.clark-cui.top/">
+				<h5>box</h5>
+				<img src="" alt="box" title="box" id="box" />
+			</a>
+		</section>
+		<footer>
+			<a href="http://beian.miit.gov.cn/" target="_blank">滇ICP备20001977号</a>
+		</footer>
+	</div>
+	<div class="spinner">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+	</div>
+	<style>
+		.spinner {
+			margin: 100px auto;
+			width: 50px;
+			height: 60px;
+			text-align: center;
+			font-size: 10px;
+		}
+
+		.spinner>div {
+			background-color: #409eff;
+			height: 100%;
+			width: 6px;
+			display: inline-block;
+
+			-webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+			animation: stretchdelay 1.2s infinite ease-in-out;
+		}
+
+		.spinner .rect2 {
+			-webkit-animation-delay: -1.1s;
+			animation-delay: -1.1s;
+		}
+
+		.spinner .rect3 {
+			-webkit-animation-delay: -1.0s;
+			animation-delay: -1.0s;
+		}
+
+		.spinner .rect4 {
+			-webkit-animation-delay: -0.9s;
+			animation-delay: -0.9s;
+		}
+
+		.spinner .rect5 {
+			-webkit-animation-delay: -0.8s;
+			animation-delay: -0.8s;
+		}
+
+		@-webkit-keyframes stretchdelay {
+
+			0%,
+			40%,
+			100% {
+				-webkit-transform: scaleY(0.4)
+			}
+
+			20% {
+				-webkit-transform: scaleY(1.0)
+			}
+		}
+
+		@keyframes stretchdelay {
+
+			0%,
+			40%,
+			100% {
+				transform: scaleY(0.4);
+				-webkit-transform: scaleY(0.4);
+			}
+
+			20% {
+				transform: scaleY(1.0);
+				-webkit-transform: scaleY(1.0);
+			}
+		}
+	</style>
+	<!-- shader for bird's position -->
+	<script id="fragmentShaderPosition" type="x-shader/x-fragment">
+
+		uniform float time;
           uniform float delta;
 
           void main()	{
@@ -54,10 +129,10 @@
           }
     </script>
 
-    <!-- shader for bird's velocity -->
-    <script id="fragmentShaderVelocity" type="x-shader/x-fragment">
+	<!-- shader for bird's velocity -->
+	<script id="fragmentShaderVelocity" type="x-shader/x-fragment">
 
-      uniform float time;
+		uniform float time;
           uniform float testing;
           uniform float delta; // about 0.016
           uniform float separationDistance; // 20
@@ -214,9 +289,9 @@
           }
     </script>
 
-    <script type="x-shader/x-vertex" id="birdVS">
+	<script type="x-shader/x-vertex" id="birdVS">
 
-      attribute vec2 reference;
+		attribute vec2 reference;
           attribute float birdVertex;
 
           attribute vec3 birdColor;
@@ -279,10 +354,10 @@
           }
     </script>
 
-    <!-- bird geometry shader -->
-    <script type="x-shader/x-fragment" id="birdFS">
+	<!-- bird geometry shader -->
+	<script type="x-shader/x-fragment" id="birdFS">
 
-      varying vec4 vColor;
+		varying vec4 vColor;
           varying float z;
 
           uniform vec3 color;
@@ -294,5 +369,6 @@
 
           }
     </script>
-  </body>
+</body>
+
 </html>
