@@ -7,15 +7,18 @@ const {
 module.exports = {
     mode: 'development',
     entry: {
-        homeSite: ['./src/scripts/index.ts', './src/scss/index.scss']
+        homeSite: ['./src/index.ts', './src/scss/index.scss']
     },
 
     devtool: 'inline-source-map',
     devServer: {
+        // 使用Ip
+        // useLocalIp: true,
+        // host: '0.0.0.0',
         port: 1099,
         contentBase: __dirname + 'dist',
         hot: true,
-        openPage: 'homeSite.html',
+        openPage: 'index.html',
         watchOptions: {
             ignored: /node_modules/
         },
@@ -31,6 +34,18 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
+            },
+            // 处理js
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime', ],
+                    }
+                }
             },
             // 处理css
             {
@@ -55,16 +70,26 @@ module.exports = {
             // 处理图片
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'assets',
+                        publicPath: 'assets',
+                        limit: 1024
+                    }
+                }],
+
             },
             // 处理字体
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader'
-                ]
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'fonts'
+                    }
+                }],
             },
 
 
@@ -78,20 +103,16 @@ module.exports = {
         new CleanWebpackPlugin(),
         // 匹配htmlY与js
         new HtmlWebpackPlugin({
-            title: 'homeSite',
-            filename: 'homeSite.html', // dist目录下生成的文件名
-            template: './entrance/index.html' // 我们原来的index.html，作为模板
-
+            title: 'clark-cui',
+            filename: 'index.html', // dist目录下生成的文件名
+            template: './src/index.html' // 我们原来的index.html，作为模板
         }),
 
     ],
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, '../dist'),
-        library: 'HomeSite',
-        libraryTarget: 'umd',
-        libraryExport: 'default',
-        umdNamedDefine: true,
+        publicPath: '/',
     },
     optimization: {
         runtimeChunk: 'single',
