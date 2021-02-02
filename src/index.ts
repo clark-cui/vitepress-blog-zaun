@@ -14,5 +14,7 @@ const box_img: any = document.querySelector('#box');
 box_img.src = box_img_src;
 
 birds();
+const loading: any = document.querySelector('.spinner ');
+loading.style.display = 'none';
 const home: any = document.querySelector('.home');
 home.style.display = 'flex';
