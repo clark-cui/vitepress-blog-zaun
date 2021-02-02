@@ -19,20 +19,20 @@ module.exports = {
         watchOptions: {
             ignored: /node_modules/
         },
-        //proxy只能为string/object,不能用webpack的数组写法
+        // proxy只能为string/object,不能用webpack的数组写法
         proxy: {
 
         },
     },
     module: {
         rules: [
-            //处理ts
+            // 处理ts
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
             },
-            //处理css
+            // 处理css
             {
                 test: /\.css$/,
                 use: [
@@ -46,20 +46,20 @@ module.exports = {
                     },
                 ],
             },
-            //处理scss
+            // 处理scss
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
 
             },
-            //处理图片
+            // 处理图片
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     'file-loader'
                 ]
             },
-            //处理字体
+            // 处理字体
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
@@ -74,16 +74,16 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [
-        //清理dist
+        // 清理dist
         new CleanWebpackPlugin(),
-        //匹配htmlY与js
+        // 匹配htmlY与js
         new HtmlWebpackPlugin({
             title: 'homeSite',
             filename: 'homeSite.html', // dist目录下生成的文件名
             template: './entrance/index.html' // 我们原来的index.html，作为模板
 
         }),
-     
+
     ],
     output: {
         filename: '[name].js',
