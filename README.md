@@ -6,7 +6,7 @@
 - [x] Threejs
 - [x] Loading
 - [ ] Deploy
-- [ ] Github Action
+- [ ] Github Actions
 - [ ] Https
 - [ ] CDN
 - [ ] Gzip
