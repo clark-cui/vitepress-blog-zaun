@@ -5,8 +5,8 @@
 - [x] Webpack
 - [x] Threejs
 - [x] Loading
-- [ ] Deploy
-- [ ] Github Actions
+- [x] Deploy
+- [x] Github Actions
 - [ ] Https
 - [ ] CDN
 - [ ] Gzip
