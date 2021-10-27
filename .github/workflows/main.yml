@@ -27,6 +27,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
         run: npm install # 安装依赖
 
+      - name: Build Packages
+        run: npm run build #  打包文件
+        
       # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
       - name: reset git
         run: git reset --hard
