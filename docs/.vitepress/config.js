@@ -43,8 +43,9 @@ module.exports = {
   head: [
     ['link', {
       rel: 'icon',
-      type: 'image/png',
-      href: '/favicon.png'
+      // type: 'image/png',
+      type: 'image/jpeg',
+      href: './public/avator.jpg'
     }],
     ['meta', {
       name: 'author',
@@ -90,7 +91,7 @@ module.exports = {
   ],
   themeConfig: {
     repo: 'clark-cui/homeSite',
-    logo: '/logo.svg',
+    logo: './public/tea.svg',
     docsDir: 'docs',
     docsBranch: 'master',
     editLinks: 'https://github.com/clark-cui/homeSite/issues',
