@@ -3,4 +3,4 @@ editLink: false
 ---
 
 
-![avator](./public/avator.jpg)
+![avator](/avator.jpg)
