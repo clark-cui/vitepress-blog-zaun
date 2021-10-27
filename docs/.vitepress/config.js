@@ -91,9 +91,10 @@ module.exports = {
   themeConfig: {
     repo: 'clark-cui/homeSite',
     logo: '/logo.svg',
+    docsDir: 'docs',
     docsBranch: 'master',
-    editLinks: true,
-    editLinkText: 'Suggest changes to this page',
+    editLinks: 'https://github.com/clark-cui/homeSite/issues',
+    editLinkText: 'Edit this page in Github',
 
     // algolia: {
     //   apiKey: '90a0bae6ff7307fb76896cbe2f975b0c',
