@@ -95,10 +95,10 @@ module.exports = {
     editLinks: true,
     editLinkText: 'Suggest changes to this page',
 
-    // algolia: {
-    //   apiKey: '90a0bae6ff7307fb76896cbe2f975b0c',
-    //   indexName: 'clark-cui-docs',
-    // },
+    algolia: {
+      apiKey: '90a0bae6ff7307fb76896cbe2f975b0c',
+      indexName: 'clark-cui-docs',
+    },
 
     nav: [{
         text: 'Blog',
