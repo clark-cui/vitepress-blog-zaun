@@ -11,10 +11,14 @@ onMounted(() => {
   if (svgContainer) {
     return;
   }
+  // created insertNode and add style
   const insertNode = document.createElement("div");
   insertNode.id = "svgContainer";
+  insertNode.style.width = "300px";
+  insertNode.style.margin = "0 auto";
   const pic = document.getElementsByClassName("pic")[0];
   pic.appendChild(insertNode);
+  // created lottie
   const animItem = lottie.loadAnimation({
     container: insertNode,
     renderer: "svg",
@@ -26,9 +30,5 @@ onMounted(() => {
 <style scoped>
 .pic {
   text-align: center;
-}
-#svgContainer {
-  width: 300px;
-  margin: 0 auto;
 }
 </style>
