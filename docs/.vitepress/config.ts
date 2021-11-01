@@ -73,10 +73,9 @@ export default {
     editLinks: "https://github.com/clark-cui/homeSite/issues",
     editLinkText: "Edit this page in Github",
     lastUpdated: "Last Updated",
-
     algolia: {
-      apiKey: '90a0bae6ff7307fb76896cbe2f975b0c',
-      indexName: 'clark-cui-docs',
+      apiKey: "90a0bae6ff7307fb76896cbe2f975b0c",
+      indexName: "clark-cui-docs",
     },
 
     nav: [

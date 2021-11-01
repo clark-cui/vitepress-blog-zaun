@@ -1,24 +1,30 @@
 <script setup>
 import DefaultTheme from "vitepress/theme";
 const { Layout } = DefaultTheme;
+import HomeHero from "./HomeHero.vue";
+import HomeFeature from "./HomeFeature.vue";
 </script>
 
 <template>
   <Layout>
     <template #page-bottom>
       <footer>
-        Theme by
-        <a
-          href="https://github.com/clark-cui/homeSite"
-          target="_blank"
-          title="本站主题"
-          >Fruits</a
-        >
-        | Copyright © 2019-2021
-        <a href="https://github.com/clark-cui" target="_blank" title="作者"
+        Designed by
+        <a href="https://github.com/clark-cui/" target="_blank" title="作者"
           >clark-cui</a
         >
-        | MIT License
+        | Copyright © 2019-2021 | MIT License
+      </footer>
+    </template>
+    <template #home-hero> <HomeHero></HomeHero> </template>
+    <template #home-features> <HomeFeature></HomeFeature> </template>
+    <template #home-footer>
+      <footer>
+        Designed by
+        <a href="https://github.com/clark-cui/" target="_blank" title="作者"
+          >clark-cui</a
+        >
+        | Copyright © 2019-2021 | MIT License
       </footer>
     </template>
   </Layout>
