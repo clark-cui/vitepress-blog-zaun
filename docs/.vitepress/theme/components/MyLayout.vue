@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <!-- Home -->
-    <template #home-hero> <HomeHero></HomeHero> </template>
-    <template #home-features> <HomeFeature></HomeFeature> </template>
+    <template #home-hero><HomeHero /> </template>
+    <template #home-features> <HomeFeature /> </template>
   </Layout>
   <!-- copywright -->
   <CopyWright />
