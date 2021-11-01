@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <!-- Home -->
+    <!-- Home slot-->
     <template #home-hero><HomeHero /> </template>
     <template #home-features> <HomeFeature /> </template>
   </Layout>
