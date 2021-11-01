@@ -401,6 +401,11 @@ is-core-module@^2.2.0:
   dependencies:
     has "^1.0.3"
 
+lottie-web@^5.7.14:
+  version "5.7.14"
+  resolved "https://registry.npmmirror.com/lottie-web/download/lottie-web-5.7.14.tgz#cdabd256181c3ea64cf0c174a61dfa137228981f"
+  integrity sha1-zavSVhgcPqZM8MF0ph36E3IomB8=
+
 magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.nlark.com/magic-string/download/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
