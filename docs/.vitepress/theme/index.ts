@@ -2,9 +2,11 @@ import DefaultTheme from "vitepress/theme";
 import Home from "./components/Home.vue";
 // import Docs from "./components/Docs.vue";
 // import Tags from "./components/Tags.vue";
+import MyLayout from "./components/MyLayout.vue";
 import "./custom.css";
 export default {
   ...DefaultTheme,
+  Layout: MyLayout,
   enhanceApp({ app, router, siteData }) {
     // register global components
     app.component("Home", Home);
