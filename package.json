@@ -5,6 +5,7 @@
   "author": "clark-cui <cuirongchuan@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "lottie-web": "^5.7.14",
     "vitepress": "^0.20.0"
   },
   "scripts": {
