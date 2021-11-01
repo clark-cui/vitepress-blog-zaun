@@ -7,7 +7,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import avator from "./avator.jpg";
+import avator from "../../../public/avator.jpg";
 export default defineComponent({
   setup() {
     console.log("home");

@@ -39,11 +39,9 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px;
 }
-h4 {
-  padding: 30px;
-  padding-top: 0;
-}
+
 article {
   display: block;
   border-radius: 10px;
