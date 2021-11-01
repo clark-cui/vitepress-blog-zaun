@@ -5,17 +5,8 @@
     </picture>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import avator from "../../../public/avator.jpg";
-export default defineComponent({
-  setup() {
-    console.log("home");
-    return {
-      avator,
-    };
-  },
-});
 </script>
 <style scoped>
 .pic {

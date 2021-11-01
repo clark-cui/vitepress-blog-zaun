@@ -25,14 +25,7 @@
     </article>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  setup() {
-    console.log("home");
-  },
-});
+<script lang="ts" setup>
 </script>
 <style scoped>
 .feature {
