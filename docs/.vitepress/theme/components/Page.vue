@@ -104,4 +104,7 @@ onMounted(() => {
   font-size: 30px;
   font-weight: bold;
 }
+.date {
+  padding-bottom: 7px;
+}
 </style>
