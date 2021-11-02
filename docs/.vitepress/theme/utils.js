@@ -4,8 +4,7 @@ const fs = require('fs-extra')
 const path = require('path')
 
 module.exports = {
-  getPosts,
-  generatePaginationPages
+  getPosts
 }
 
 async function getPosts() {
