@@ -5,6 +5,9 @@
   "author": "clark-cui <cuirongchuan@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "fs-extra": "^10.0.0",
+    "globby": "11.0.4",
+    "gray-matter": "^4.0.3",
     "lottie-web": "^5.7.14",
     "vitepress": "^0.20.0"
   },
