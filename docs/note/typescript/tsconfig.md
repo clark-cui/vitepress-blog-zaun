@@ -43,4 +43,4 @@ let num: number = undefined;
 
 ## noEmitOnError
 
-ts默认即使编译报错也会生成 Js 文件，这一项设置 true,可以在报错的时候，不生成 js
+ts 默认即使编译报错也会生成 Js 文件，这一项设置 true,可以在报错的时候，不生成 js

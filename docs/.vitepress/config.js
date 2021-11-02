@@ -1,6 +1,7 @@
 // @ts-check
 const {
-  getPosts,} = require("./theme/utils");
+  getPosts,
+} = require("./theme/utils");
 
 async function config() {
   return {
@@ -82,8 +83,8 @@ function getUsSidebar() {
         link: "/note/unsettle/why"
       },
       {
-        text: "first",
-        link: "/note/unsettle/first"
+        text: "sample",
+        link: "/note/unsettle/sample"
       },
     ],
   }, ];
