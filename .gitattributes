@@ -1,6 +1,7 @@
-src/* linguist-documentation=false
-src/* linguist-vendored
-src/.vitepress/* linguist-documentation=false
-src/.vitepress/* linguist-vendored
-src/.vitepress/theme/* linguist-documentation=false
-src/.vitepress/theme/* linguist-vendored
+
+.vitepress/config.js -linguist-detectable
+.vitepress/theme/custom.css -llinguist-detectable
+.vitepress/theme/index.ts -llinguist-detectable
+.vitepress/theme/utils.js -llinguist-detectable
+
+
