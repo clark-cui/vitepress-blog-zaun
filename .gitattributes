@@ -2,3 +2,5 @@ docs/* linguist-documentation=false
 docs/* linguist-vendored
 docs/.vitepress/* linguist-documentation=false
 docs/.vitepress/* linguist-vendored
+docs/.vitepress/theme/* linguist-documentation=false
+docs/.vitepress/theme/* linguist-vendored
