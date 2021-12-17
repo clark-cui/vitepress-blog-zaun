@@ -1,2 +1,4 @@
 docs/* linguist-documentation=false
 docs/* linguist-vendored
+docs/.vitepress/* linguist-documentation=false
+docs/.vitepress/* linguist-vendored
