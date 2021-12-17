@@ -25,7 +25,7 @@ posts = posts.filter((item: post) => {
 // add go function
 const go = (item: post) => {
   let url = item.regularPath;
-  url = url.replace("/docs", "");
+  url = url.replace("/src", "");
   location.href = url;
 };
 // timestamp transform
