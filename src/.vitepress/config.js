@@ -43,7 +43,7 @@ async function config() {
     themeConfig: {
       repo: "clark-cui/homeSite",
       logo: "/tea.svg",
-      docsDir: "docs",
+      docsDir: "src",
       docsBranch: "master",
       editLinks: "https://github.com/clark-cui/homeSite/issues",
       editLinkText: "Edit this page in Github",

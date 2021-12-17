@@ -1,6 +1,6 @@
-docs/* linguist-documentation=false
-docs/* linguist-vendored
-docs/.vitepress/* linguist-documentation=false
-docs/.vitepress/* linguist-vendored
-docs/.vitepress/theme/* linguist-documentation=false
-docs/.vitepress/theme/* linguist-vendored
+src/* linguist-documentation=false
+src/* linguist-vendored
+src/.vitepress/* linguist-documentation=false
+src/.vitepress/* linguist-vendored
+src/.vitepress/theme/* linguist-documentation=false
+src/.vitepress/theme/* linguist-vendored

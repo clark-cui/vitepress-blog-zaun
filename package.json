@@ -12,8 +12,8 @@
     "vitepress": "^0.20.0"
   },
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "serve": "vitepress serve src"
   }
 }
