@@ -1,8 +1,8 @@
 
 ## WIP
-This project is still under beta.You could [click here](http://clark-cui.top) to see what it looks like.
+This is my always wip personal webpage.You could [click here](http://clark-cui.top) to see what it looks like.
 ## Hello
-This is my homeSite.It use [vitepress ](https://github.com/vuejs/vitepress) to genetate md file,design reference from [lihautan](https://lihautan.com/).
+It use [vitepress ](https://github.com/vuejs/vitepress) to genetate md file,and the design reference is from [lihautan](https://lihautan.com/).
 ## start
 ```shell
 git clone
