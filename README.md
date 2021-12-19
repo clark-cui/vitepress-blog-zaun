@@ -5,7 +5,7 @@ This is my always wip personal webpage.You could [click here](http://clark-cui.t
 It use [vitepress ](https://github.com/vuejs/vitepress) to genetate md file,and the design reference is from [lihautan](https://lihautan.com/).
 
 Also,it use github-actions to depoly on my personal server.
-## start
+## Start
 ```shell
 git clone
 yarn 
