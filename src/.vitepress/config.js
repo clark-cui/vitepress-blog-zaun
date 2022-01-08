@@ -49,67 +49,22 @@ async function config() {
       editLinkText: "Edit this page in Github",
       lastUpdated: "Last Updated",
       posts: await getPosts(),
-//       algolia: {
-//         apiKey: "90a0bae6ff7307fb76896cbe2f975b0c",
-//         indexName: "clark-cui-docs",
-//       },
+      //       algolia: {
+      //         apiKey: "90a0bae6ff7307fb76896cbe2f975b0c",
+      //         indexName: "clark-cui-docs",
+      //       },
 
       nav: [{
-          text: "blog",
-          link: "/blog/"
-        },
-        {
-          text: "note",
-          items: getNoteNav(),
-        },
-      ],
+        text: "Posts",
+        link: "/posts/"
+      }, ],
 
       sidebar: {
-        "/blog/": false,
-        "/note/unsettle": getUsSidebar(),
-        "note/typescript": getTsSidebar(),
+        "/posts/": false,
         "/": false,
       },
     },
   }
 
 };
-
-function getUsSidebar() {
-  return [{
-    text: "Unsettled",
-    children: [{
-        text: "why",
-        link: "/note/unsettle/why"
-      },
-      {
-        text: "sample",
-        link: "/note/unsettle/sample"
-      },
-    ],
-  }, ];
-}
-
-function getTsSidebar() {
-  return [{
-    text: "TypeScript",
-    children: [{
-      text: "tsconfig",
-      link: "/note/typescript/tsconfig"
-    }],
-  }, ];
-}
-
-function getNoteNav() {
-  return [{
-      text: "Unsettled",
-      link: "/note/unsettle/why",
-    },
-    {
-      text: "TypeScript",
-      link: "/note/typescript/tsconfig",
-    },
-  ];
-}
-
 module.exports = config();
