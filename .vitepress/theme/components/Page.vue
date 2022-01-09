@@ -25,7 +25,7 @@ posts = posts.filter((item: post) => {
 // timestamp transform
 const transDate = (date: string) => {
   const dateArray = date.split("-");
-  console.log(dateArray);
+  // console.log(dateArray);
   let year = dateArray[0],
     month = ``,
     day = dateArray[2];
