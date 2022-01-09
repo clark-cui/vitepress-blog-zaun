@@ -1,6 +1,9 @@
 ---
 title: 代理配置
 description: 由于网络问题，需要做一些代理的设置，这里是我的一些记录
+tags:
+  - 代理
+  - 环境配置
 ---
 
 - 下载安装 whistle, windows 防火墙开放端口
