@@ -1,9 +1,9 @@
 <template>
   <div class="blogList">
-    <div class="blog" v-for="item in posts" @click="go(item)">
+    <a class="blog" v-for="item in posts" :href="withBase(item.regularPath)">
       <div class="title">{{ item.frontMatter.title }}</div>
       <div class="date">{{ transDate(item.frontMatter.date) }}</div>
-    </div>
+    </a>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,7 +13,7 @@ interface post {
 }
 import { onMounted } from "vue";
 
-import { useData } from "vitepress";
+import { useData, withBase } from "vitepress";
 const { theme } = useData();
 
 // get posts
@@ -22,12 +22,6 @@ let posts = (theme as any)._value.posts || [];
 posts = posts.filter((item: post) => {
   return item.regularPath.indexOf("index") < 0;
 });
-// add go function
-const go = (item: post) => {
-  let url = item.regularPath;
-  url = url.replace("/src", "");
-  location.href = url;
-};
 // timestamp transform
 const transDate = (date: string) => {
   const dateArray = date.split("-");
