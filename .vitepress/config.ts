@@ -60,13 +60,17 @@ async function config() {
           text: "Tags",
           link: "./pages/tags",
         },
+        {
+          text: "Archives",
+          link: "./pages/archives",
+        },
       ],
 
       // sidebar: {
       //   "./posts/": false,
       //   "/": false,
       // },
-      sidebar:false,
+      sidebar: false,
     },
   };
 }

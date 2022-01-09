@@ -24,7 +24,6 @@ import { useData, withBase } from "vitepress";
 import { initTags } from "../utils";
 
 const { theme } = useData();
-console.log(theme, theme.value.posts, "theme");
 const data = computed(() => initTags(theme.value.posts));
 let selectTag = ref("");
 const toggleTag = (tag: string) => {
