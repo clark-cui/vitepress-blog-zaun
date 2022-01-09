@@ -46,7 +46,7 @@ async function config() {
       editLinkText: "Edit this page in Github",
       lastUpdated: "Last Updated",
       posts: await getPosts(),
-      pageSize: 3, //几个为一页
+      pageSize: 4, //几个为一页
       postLength: await getPostLength(), //博客有几篇
 
       //       algolia: {
