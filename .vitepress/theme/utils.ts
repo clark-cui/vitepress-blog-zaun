@@ -1,64 +1,25 @@
-import globby from "globby";
-import matter from "gray-matter";
-import fs from "fs-extra";
-import path from "path";
-
-export async function getPosts() {
-  let paths = await getPostMDFilePaths();
-  let posts = await Promise.all(
-    paths.map(async (item) => {
-      const content = await fs.readFile(item, "utf-8");
-      const { data } = matter(content);
-      data.date = _convertDate(data.date);
-      return {
-        frontMatter: data,
-        regularPath: `/${item.replace(".md", ".html")}`,
-      };
-    })
-  );
-  posts.sort(_compareDate);
-  return posts;
-}
-
-export function _convertDate(date = new Date().toString()) {
-  const json_date = new Date(date).toJSON();
-  return json_date.split("T")[0];
-}
-
-export function _compareDate(obj1, obj2) {
-  return obj1.frontMatter.date < obj2.frontMatter.date ? 1 : -1;
-}
-
-export async function getPostMDFilePaths() {
-  let paths = await globby(["**.md"], {
-    ignore: ["node_modules", "README.md"],
-  });
-  return paths.filter((item) => item.includes("posts/"));
-}
-
 type Post = {
   frontMatter: {
-    date: string;
-    title: string;
-    tags: string[];
-    description: string;
+    date?: string;
+    title?: string;
+    tags?: string[];
+    description?: string;
   };
   regularPath: string;
 };
 
 export function initTags(post: Post[]) {
   const data: any = {};
-  for (let index = 0; index < post.length; index++) {
-    const element = post[index];
+  for (let i = 0; i < post.length; i++) {
+    const element = post[i];
     const tags = element.frontMatter.tags;
-    if (tags) {
+    // tags是数组，需要tags按照数组语法的格式书写
+    if (Array.isArray(tags)) {
       tags.forEach((item) => {
-        if (data[item]) {
-          data[item].push(element);
-        } else {
+        if (!data[item]) {
           data[item] = [];
-          data[item].push(element);
         }
+        data[item].push(element);
       });
     }
   }

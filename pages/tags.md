@@ -2,4 +2,4 @@
 editLink: false
 ---
 
-<Page/>
+<Tags/>
