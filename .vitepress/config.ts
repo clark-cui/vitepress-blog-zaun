@@ -1,11 +1,8 @@
-// @ts-check
-const {
-  getPosts,
-} = require("./theme/utils");
+import { getPosts } from "./theme/utils";
 
 async function config() {
   return {
-    // lang: 'en-US',
+    lang: "en-US",
     title: "Clark Cui",
     description: "Home of Clark Cui",
     head: [
@@ -54,17 +51,18 @@ async function config() {
       //         indexName: "clark-cui-docs",
       //       },
 
-      nav: [{
-        text: "Posts",
-        link: "./posts/"
-      }, ],
+      nav: [
+        {
+          text: "Posts",
+          link: "./posts/",
+        },
+      ],
 
       sidebar: {
         "./posts/": false,
         "/": false,
       },
     },
-  }
-
-};
-module.exports = config();
+  };
+}
+export default config();
