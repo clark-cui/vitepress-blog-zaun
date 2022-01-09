@@ -55,7 +55,6 @@ for (let i = 0; i < postsAll.length; i++) {
   if (allMap[index].length > pageSize - 1) {
     index += 1;
   }
-  console.log(i, index, allMap, postsAll, "xx");
   allMap[index].push(postsAll[i]);
 }
 // set posts
@@ -70,7 +69,6 @@ const go = (i) => {
 // timestamp transform
 const transDate = (date: string) => {
   const dateArray = date.split("-");
-  // console.log(dateArray);
   let year = dateArray[0],
     month = ``,
     day = dateArray[2];
@@ -126,8 +124,13 @@ onMounted(() => {
 <style scoped>
 .blogList {
   padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .blog {
+  width: 100%;
   display: block;
   border-radius: 10px;
   padding: 0 20px;
@@ -152,12 +155,12 @@ onMounted(() => {
 .pagination {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
 }
 .link {
-  width: 1.5rem;
-  height: 1.5rem;
-  line-height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
   text-align: center;
   border: 1px solid #282936;
   cursor: pointer;

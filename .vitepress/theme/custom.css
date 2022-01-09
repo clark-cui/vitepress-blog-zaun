@@ -3,3 +3,7 @@
   --c-brand: #646cff;
   --c-brand-light: #747bff;
 }
+#app {
+  min-height: 100vh;
+  position: relative;
+}

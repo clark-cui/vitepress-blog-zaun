@@ -58,7 +58,12 @@ const toggleTag = (tag: string) => {
   margin: 1rem 0;
   text-align: center;
 }
-
+.article{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
 @media screen and (max-width: 700px) {
   .header {
     font-size: 1.5rem;
