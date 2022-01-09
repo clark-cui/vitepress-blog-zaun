@@ -43,7 +43,7 @@ async function config() {
     themeConfig: {
       repo: "clark-cui/homeSite",
       logo: "/tea.svg",
-      docsDir: "src",
+      docsDir: "/",
       docsBranch: "master",
       editLinks: "https://github.com/clark-cui/homeSite/issues",
       editLinkText: "Edit this page in Github",
@@ -56,11 +56,11 @@ async function config() {
 
       nav: [{
         text: "Posts",
-        link: "/posts/"
+        link: "./posts/"
       }, ],
 
       sidebar: {
-        "/posts/": false,
+        "./posts/": false,
         "/": false,
       },
     },
