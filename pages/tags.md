@@ -1,5 +1,1 @@
----
-editLink: false
----
-
 <Tags/>

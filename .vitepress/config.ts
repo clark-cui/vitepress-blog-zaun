@@ -42,9 +42,7 @@ async function config() {
       logo: "/tea.svg",
       docsDir: "/",
       docsBranch: "master",
-      editLinks: "https://github.com/clark-cui/homeSite/issues",
-      editLinkText: "Edit this page in Github",
-      lastUpdated: "Last Updated",
+      lastUpdated: false,
       posts: await getPosts(),
       pageSize: 4, //几个为一页
       postLength: await getPostLength(), //博客有几篇
