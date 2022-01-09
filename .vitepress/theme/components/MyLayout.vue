@@ -2,7 +2,7 @@
   <Layout>
     <!-- Home slot-->
     <template #home-hero><HomeHero /> </template>
-    <template #home-features> <HomeFeature /> </template>
+    <template #home-features> <Page /></template>
   </Layout>
   <!-- copywright -->
   <CopyWright />
@@ -11,8 +11,8 @@
 import DefaultTheme from "vitepress/theme";
 const { Layout } = DefaultTheme;
 import HomeHero from "./HomeHero.vue";
-import HomeFeature from "./HomeFeature.vue";
 import CopyWright from "./CopyWright.vue";
+import Page from "./Page.vue";
 </script>
 <style scoped>
 </style>
