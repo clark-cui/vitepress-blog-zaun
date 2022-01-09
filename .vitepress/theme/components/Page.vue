@@ -119,13 +119,14 @@ const transDate = (date: string) => {
 <style scoped>
 .blogList {
   padding: 30px 0;
+  padding-bottom: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .blog {
-  width: 100%;
+  width: 85%;
   display: block;
   border-radius: 10px;
   padding: 0 20px;
@@ -150,7 +151,10 @@ const transDate = (date: string) => {
 .pagination {
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: center;
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
 }
 .link {
   width: 2rem;
