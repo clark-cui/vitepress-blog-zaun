@@ -20,19 +20,23 @@ export async function getPosts() {
   return posts;
 }
 
-export function _convertDate(date = new Date().toString()) {
+function _convertDate(date = new Date().toString()) {
   const json_date = new Date(date).toJSON();
   return json_date.split("T")[0];
 }
 
-export function _compareDate(obj1, obj2) {
+function _compareDate(obj1, obj2) {
   return obj1.frontMatter.date < obj2.frontMatter.date ? 1 : -1;
 }
 
-export async function getPostMDFilePaths() {
+async function getPostMDFilePaths() {
   let paths = await globby(["**.md"], {
     ignore: ["node_modules", "README.md"],
   });
   return paths.filter((item) => item.includes("posts/"));
 }
 
+export async function getPostLength() {
+  // getPostMDFilePath return type is object not array
+  return [...(await getPostMDFilePaths())].length;
+}
