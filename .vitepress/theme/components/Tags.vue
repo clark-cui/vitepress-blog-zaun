@@ -36,6 +36,8 @@ const toggleTag = (tag: string) => {
   margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .tag {
   display: inline-block;
@@ -58,7 +60,7 @@ const toggleTag = (tag: string) => {
   margin: 1rem 0;
   text-align: center;
 }
-.article{
+.article {
   display: flex;
   align-items: center;
   justify-content: space-between;

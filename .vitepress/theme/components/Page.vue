@@ -114,11 +114,6 @@ const transDate = (date: string) => {
   }
   return `${month} ${day}, ${year}`;
 };
-// hide last updated
-onMounted(() => {
-  let updatedDom: unknown = document.getElementsByClassName("page-footer")[0];
-  (updatedDom as any).style.display = "none";
-});
 </script>
 
 <style scoped>

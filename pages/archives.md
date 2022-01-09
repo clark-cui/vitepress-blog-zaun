@@ -1,5 +1,3 @@
----
-editLink: false
----
+
 
 <Archives/>
