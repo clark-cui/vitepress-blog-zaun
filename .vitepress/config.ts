@@ -1,4 +1,4 @@
-import { getPosts } from "./theme/utils";
+import { getPosts } from "./theme/serverUtils";
 
 async function config() {
   return {
@@ -56,12 +56,17 @@ async function config() {
           text: "Posts",
           link: "./posts/",
         },
+        {
+          text: "Tags",
+          link: "./pages/tags",
+        },
       ],
 
-      sidebar: {
-        "./posts/": false,
-        "/": false,
-      },
+      // sidebar: {
+      //   "./posts/": false,
+      //   "/": false,
+      // },
+      sidebar:false,
     },
   };
 }

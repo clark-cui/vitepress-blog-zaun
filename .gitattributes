@@ -1,7 +1,7 @@
 
-.vitepress/config.js -linguist-detectable
+.vitepress/config.ts -linguist-detectable
 .vitepress/theme/custom.css -llinguist-detectable
 .vitepress/theme/index.ts -llinguist-detectable
-.vitepress/theme/utils.js -llinguist-detectable
-
+.vitepress/theme/utils.ts -llinguist-detectable
+.vitepress/theme/serverUtils.ts -llinguist-detectable
 
