@@ -17,6 +17,7 @@
     "serve": "vitepress serve "
   },
   "dependencies": {
+    "dayjs": "^1.10.7",
     "gitalk": "^1.7.2"
   }
 }
