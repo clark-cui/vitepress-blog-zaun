@@ -1,4 +1,4 @@
-<template #page-bottom>
+<template>
   <footer>
     Powered by
     <a href="https://github.com/clark-cui/" target="_blank" title="作者"
