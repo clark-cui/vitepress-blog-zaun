@@ -139,6 +139,8 @@ const transDate = (date: string) => {
 }
 .blog:hover {
   text-decoration: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px #646cff;
 }
 .title {
   color: #747bff;
@@ -155,6 +157,7 @@ const transDate = (date: string) => {
   position: absolute;
   bottom: 70px;
   width: 100%;
+  
 }
 .link {
   width: 2rem;
@@ -164,6 +167,8 @@ const transDate = (date: string) => {
   border: 1px solid #282936;
   cursor: pointer;
   border-right: none;
+  transition: 0.4s;
+  border-radius: 2px;
 }
 .link:last-child {
   border-right: 1px solid #282936;

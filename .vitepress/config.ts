@@ -38,10 +38,10 @@ async function config() {
       ],
     ],
     themeConfig: {
-      repo: "clark-cui/homeSite",
+      // repo: "clark-cui/homeSite",
       logo: "/tea.svg",
       docsDir: "/",
-      docsBranch: "master",
+      // docsBranch: "master",
       lastUpdated: false,
       posts: await getPosts(),
       pageSize: 4, //几个为一页
@@ -54,15 +54,15 @@ async function config() {
 
       nav: [
         {
-          text: "Home",
+          text: "🏡Home",
           link: "/",
         },
         {
-          text: "Tags",
+          text: "🔖Tags",
           link: "/tags",
         },
         {
-          text: "Archives",
+          text: "📃Archives",
           link: "/archives",
         },
       ],
