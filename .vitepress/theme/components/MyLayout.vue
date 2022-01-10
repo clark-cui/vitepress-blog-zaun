@@ -2,6 +2,7 @@
   <Layout>
     <template #navbar-search> <ToggleTheme /></template>
     <template #page-top>
+      <Title />
       <Category />
     </template>
     <template #page-bottom>
@@ -23,6 +24,7 @@ import Comments from "./Comments.vue";
 import Page from "./Page.vue";
 import ToggleTheme from "./ToggleTheme.vue";
 import Category from "./Category.vue";
+import Title from "./Title.vue";
 </script>
 <style scoped>
 </style>
