@@ -12,6 +12,7 @@ This is my always wip personal webpage.You could [click here](http://clark-cui.t
 - [x] comments
 - [x] lastUpdated
 - [x] github actions
+- [x] mobile + desktop 
 
 ## Start
 
