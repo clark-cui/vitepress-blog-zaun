@@ -11,17 +11,18 @@
   --c-brand-light: pink; */
   --c-bg: black;
   --c-text: white;
+  --c-hover: #ffffff;
 }
 #app {
   min-height: 100vh;
   position: relative;
 }
-a {
-}
-a:hover {
+/* a {
+} */
+/* a:hover {
   text-decoration: none;
   color: var(--c-brand-light);
-}
+} */
 .theme {
   background-color: var(--c-bg);
 }
