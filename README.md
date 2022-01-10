@@ -1,12 +1,6 @@
-## WIP
-
-This is my always wip personal webpage.You could [click here](http://clark-cui.top) to see what it looks like.
-
 ## Hello
 
-It use [vitepress ](https://github.com/vuejs/vitepress) to genetate md file,and the design reference is from [lihautan](https://lihautan.com/).
-
-Also,it use github-actions to depoly on my personal server.
+This is my always wip personal webpage.You could [click here](http://clark-cui.top) to see what it looks like.For now,It use vitepress to generate .md file.
 
 ## Highlights
 
@@ -16,6 +10,7 @@ Also,it use github-actions to depoly on my personal server.
 - [x] tags
 - [x] content level
 - [x] comments
+- [x] github actions
 
 ## Start
 
@@ -38,3 +33,5 @@ yarn dev
 [harlanzw.com](https://github.com/harlan-zw/harlanzw.com)
 
 [slidevjs/docs](https://github.com/slidevjs/docs)
+
+[lihautan](https://lihautan.com/)
