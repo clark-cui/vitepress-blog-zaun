@@ -59,11 +59,11 @@ async function config() {
         },
         {
           text: "Tags",
-          link: "./pages/tags",
+          link: "/tags",
         },
         {
           text: "Archives",
-          link: "./pages/archives",
+          link: "/archives",
         },
       ],
 
