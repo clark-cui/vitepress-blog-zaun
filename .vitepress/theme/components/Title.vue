@@ -5,7 +5,8 @@
 </template>
 <script lang="ts" setup>
 import { useData } from "vitepress";
-import * as dayjs from "dayjs";
+// import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 type pageData = {
   description: string;
@@ -16,7 +17,7 @@ type pageData = {
   relativePath: string;
 };
 const pageData: pageData = useData().page.value;
-console.log(pageData);
+// console.log(pageData);
 const { title, description, lastUpdated } = pageData;
 // /https://day.js.org/docs/zh-CN/plugin/relative-time
 dayjs.extend(relativeTime);
