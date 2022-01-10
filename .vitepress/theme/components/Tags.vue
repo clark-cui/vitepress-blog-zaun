@@ -120,13 +120,15 @@ const getFontSize = (length: number) => {
   justify-content: space-between;
   margin: 10px 10px;
 
-  border-bottom: 2px solid #646cff;
+  /* border-bottom: 2px solid #646cff; */
   color: #666;
   transition: border 0.3s ease, color 0.3s ease;
 }
 .article:hover {
   text-decoration: none;
-  color: #212121;
-  border-color: #212121;
+  color: #646cff;
+}
+.date {
+  font-family: Georgia, sans-serif;
 }
 </style>
