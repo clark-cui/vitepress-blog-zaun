@@ -311,35 +311,33 @@ function sum(x: number, y: number): number {
 
 #### 函数表达式
 
-     ```ts
-        let mySum: (x: number, y: number) => number = (
-          x: number,
-          y: number
-        ): number => {
-          return x + y;
-        };
-        // 第一个冒号到第一个等号之间的可以省略，相当于不写type
-        //ts会类型推断的，不然这么写
-        //就像写了两遍
-
-        //或者这么写，注意是Function不是function，其实也相当于少写了type
-        let newSum: Function = (x: number, y: number): number => {
-          return x + y;
-        };
-
-````
-####  用接口定义函数,注意参数的括号
 ```ts
-        interface SearchFunc {
-          (source: string, subString: string): boolean;
-        }
-        let mySearch: SearchFunc = (
-          source: string,
-          subString: string
-        ): boolean => {
-          return source.search(subString) !== -1;
-        };
-````
+let mySum: (x: number, y: number) => number = (
+  x: number,
+  y: number
+): number => {
+  return x + y;
+};
+// 第一个冒号到第一个等号之间的可以省略，相当于不写type
+//ts会类型推断的，不然这么写
+//就像写了两遍
+
+//或者这么写，注意是Function不是function，其实也相当于少写了type
+let newSum: Function = (x: number, y: number): number => {
+  return x + y;
+};
+```
+
+#### 用接口定义函数,注意参数的括号
+
+```ts
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+let mySearch: SearchFunc = (source: string, subString: string): boolean => {
+  return source.search(subString) !== -1;
+};
+```
 
 #### 可选参数（可选参数要放在最后），参数默认值
 
