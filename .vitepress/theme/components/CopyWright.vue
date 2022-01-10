@@ -21,5 +21,10 @@ a {
   color: #646cff;
   font-weight: bold;
 }
+a:hover {
+  text-decoration: none;
+  color: #212121;
+  border-color: #212121;
+}
 </style>
 
