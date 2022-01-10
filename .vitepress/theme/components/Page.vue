@@ -1,4 +1,6 @@
 <template>
+  <ShareCard />
+  <h1 class="blog-title">Blog</h1>
   <div class="blogList">
     <a class="blog" v-for="item in posts" :href="withBase(item.regularPath)">
       <div class="title">{{ item.frontMatter.title }}</div>
@@ -23,7 +25,7 @@ interface post {
   frontMatter: object;
 }
 import { onMounted, ref, reactive } from "vue";
-
+import ShareCard from "./ShareCard.vue";
 import { useData, withBase } from "vitepress";
 const { theme } = useData();
 
@@ -117,6 +119,10 @@ const transDate = (date: string) => {
 </script>
 
 <style scoped>
+.blog-title {
+  text-align: center;
+  font-weight: bold;
+}
 .blogList {
   padding: 30px 0;
   padding-bottom: 120px;
@@ -166,11 +172,14 @@ const transDate = (date: string) => {
   border: 1px solid #282936;
   cursor: pointer;
   border-right: none;
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 2px;
 }
 .link:last-child {
   border-right: 1px solid #282936;
+}
+.link:hover {
+  transform: translate(-1px, -1px);
 }
 .activeLink {
   background-color: var(--c-brand);
