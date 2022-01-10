@@ -16,15 +16,16 @@ footer {
   width: 100%;
   bottom: 20px;
   padding: 0 20px;
+  background: var(--c-bg);
+  color: var(--c-text);
 }
 a {
-  color: #646cff;
+  color: var(--c-brand);
   font-weight: bold;
 }
 a:hover {
   text-decoration: none;
-  color: #212121;
-  border-color: #212121;
+  color: var(--c-hover);
 }
 </style>
 

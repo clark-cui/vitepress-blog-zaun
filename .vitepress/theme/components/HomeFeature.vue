@@ -43,7 +43,7 @@ article {
   background: #fff;
   max-width: 600px;
 
-  box-shadow: 6px 6px #646cff;
+  box-shadow: 6px 6px var(--c-brand);
   border: 4px solid #282936;
 }
 p {

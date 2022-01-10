@@ -25,7 +25,7 @@
     >
       <path
         d="M995.126867 592.38l-360.08 360.08a53.333333 53.333333 0 0 1-71.333334 3.68l356.22-356.22a64 64 0 0 0 0-90.506667L495.8402 85.333333h45.573333a52.986667 52.986667 0 0 1 37.713334 15.62l416 416a53.4 53.4 0 0 1 0 75.426667z m-128 0l-360.08 360.08a53.333333 53.333333 0 0 1-75.426667 0l-416-416A52.986667 52.986667 0 0 1 0.0002 498.746667V138.666667a53.393333 53.393333 0 0 1 53.333333-53.333334h360.08a52.986667 52.986667 0 0 1 37.713334 15.62l416 416a53.4 53.4 0 0 1 0 75.426667zM341.333533 341.333333a85.333333 85.333333 0 1 0-85.333333 85.333334 85.426667 85.426667 0 0 0 85.333333-85.333334z"
-        fill="#646cff"
+        fill="var(--c-brand)"
         p-id="1255"
       ></path></svg
     ><span class="header-text">{{ selectTag }}</span>
@@ -88,13 +88,13 @@ const getFontSize = (length: number) => {
   cursor: pointer;
 }
 .tag:hover {
-  color: #212121;
+  color: var(--c-hover);
 }
 .activetag {
-  color: #212121;
+  color: var(--c-hover);
 }
 .tag-length {
-  color: #646cff;
+  color: var(--c-brand);
   font-size: 12px !important;
   position: relative;
   top: -8px;
@@ -119,14 +119,12 @@ const getFontSize = (length: number) => {
   align-items: center;
   justify-content: space-between;
   margin: 10px 10px;
-
-  /* border-bottom: 2px solid #646cff; */
   color: #666;
   transition: border 0.3s ease, color 0.3s ease;
 }
 .article:hover {
   text-decoration: none;
-  color: #646cff;
+  color: var(--c-brand);
 }
 .date {
   font-family: Georgia, sans-serif;

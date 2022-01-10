@@ -131,19 +131,19 @@ const transDate = (date: string) => {
   border-radius: 10px;
   padding: 0 20px;
   margin: 10px;
-  background: #fff;
+  background: var(--c-bg);
   max-width: 600px;
-  box-shadow: 6px 6px #646cff;
+  box-shadow: 6px 6px var(--c-brand);
   border: 4px solid #282936;
   cursor: pointer;
 }
 .blog:hover {
   text-decoration: none;
   transform: translate(-2px, -2px);
-  box-shadow: 10px 10px #646cff;
+  box-shadow: 10px 10px var(--c-brand);
 }
 .title {
-  color: #747bff;
+  color: var(--c-brand-light);
   font-size: 30px;
   font-weight: bold;
 }
@@ -157,7 +157,6 @@ const transDate = (date: string) => {
   position: absolute;
   bottom: 70px;
   width: 100%;
-  
 }
 .link {
   width: 2rem;
@@ -174,7 +173,7 @@ const transDate = (date: string) => {
   border-right: 1px solid #282936;
 }
 .activeLink {
-  background-color: #646cff;
+  background-color: var(--c-brand);
   color: white;
 }
 </style>

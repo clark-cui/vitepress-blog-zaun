@@ -2,8 +2,26 @@
 :root {
   --c-brand: #646cff;
   --c-brand-light: #747bff;
+
+  --c-hover: #212121;
+  --c-bg: #fff;
+}
+.dark {
+  /* --c-brand: red;
+  --c-brand-light: pink; */
+  --c-bg: black;
+  --c-text: white;
 }
 #app {
   min-height: 100vh;
   position: relative;
+}
+a {
+}
+a:hover {
+  text-decoration: none;
+  color: var(--c-brand-light);
+}
+.theme {
+  background-color: var(--c-bg);
 }
