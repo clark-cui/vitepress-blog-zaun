@@ -6,7 +6,7 @@
       <Category v-if="isPost" />
     </template>
     <template #page-bottom>
-      <Comments />
+      <Comments v-if="isPost" />
     </template>
     <!-- Home slot-->
     <template #home-hero><HomeHero /> </template>
