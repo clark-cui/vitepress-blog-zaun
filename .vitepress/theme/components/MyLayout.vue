@@ -1,6 +1,9 @@
 <template>
   <Layout>
     <template #navbar-search> <ToggleTheme /></template>
+    <template #page-top>
+      <Category />
+    </template>
     <!-- Home slot-->
     <template #home-hero><HomeHero /> </template>
     <template #home-features> <Page /></template>
@@ -15,6 +18,7 @@ import HomeHero from "./HomeHero.vue";
 import CopyWright from "./CopyWright.vue";
 import Page from "./Page.vue";
 import ToggleTheme from "./ToggleTheme.vue";
+import Category from "./Category.vue";
 </script>
 <style scoped>
 </style>
