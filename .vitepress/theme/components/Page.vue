@@ -159,7 +159,7 @@ const transDate = (date: string) => {
 }
 .title {
   color: var(--c-brand-light);
-  font-size: 30px;
+  font-size: 1.2em;
   font-weight: bold;
 }
 .date {
