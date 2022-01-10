@@ -2,7 +2,7 @@
   <div class="shareCard">
     <h1>
       <img class="share-avator" src="/avator.jpg" />
-      <span>Hi,I'm Clark Cui 👋</span>
+      <span>Hi, I'm Clark Cui 👋</span>
     </h1>
     <p>搬砖ing...</p>
     <div class="cardPart">
