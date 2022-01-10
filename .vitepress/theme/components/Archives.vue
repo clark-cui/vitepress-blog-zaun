@@ -53,7 +53,7 @@ console.log(data, "data");
 }
 .article:hover {
   text-decoration: none;
-  color: #646cff;
+  color: var(--c-brand);
 }
 .date {
   font-family: Georgia, sans-serif;
