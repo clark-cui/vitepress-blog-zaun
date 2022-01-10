@@ -4,10 +4,11 @@
     <a href="https://github.com/clark-cui/" target="_blank" title="作者"
       >clark-cui</a
     >
-    | Copyright © 2019-2021 | MIT License
+    | Copyright © 2019-{{ date }} | MIT License
   </footer>
 </template>
 <script lang="ts" setup>
+const date = new Date().getFullYear();
 </script>
 <style scoped>
 footer {
