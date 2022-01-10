@@ -1,6 +1,6 @@
 <template>
   <div style="padding-top: 10px">
-    <div v-for="yearList in data">
+    <div v-for="yearList in data" class="yearItem">
       <div class="year">
         {{ yearList[0].frontMatter.date.split("-")[0] }}
       </div>
@@ -31,15 +31,31 @@ console.log(data, "data");
 </script>
 
 <style scoped>
+.yearItem {
+  border-bottom: 1px dashed #c7c7c7;
+}
+.yearItem:last-child {
+  border: none;
+}
 .year {
   padding: 16px 0 8px 0;
   font-size: 1.2rem;
   font-weight: 600;
 }
+
 .article {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 10px;
+  margin: 10px 10px;
+  color: #666;
+  transition: border 0.3s ease, color 0.3s ease;
+}
+.article:hover {
+  text-decoration: none;
+  color: #646cff;
+}
+.date {
+  font-family: Georgia, sans-serif;
 }
 </style>
