@@ -1,6 +1,6 @@
 ## Hello
 
-This is my always wip personal webpage. You could [click here](http://clark-cui.top) to see what it looks like. 
+This is my always wip personal webpage. You could [click here](https://clark-cui.top) to see what it looks like. 
 
 For now, It use vitepress & Vue & TypeScript to build.
 
