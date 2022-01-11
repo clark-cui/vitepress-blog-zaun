@@ -12,7 +12,7 @@ tags:
 
 ### 现状
 
-服务器是买的 Ucloud 的，没啥，就是便宜。之前的建站过程中，我分了 4 个块，主站，blog 站，note 站，box 站，note 和 box 都是一个默认的 html，主站用 threeejs 跑了个 demo,博客站用的 vuepress-reco 主题构建的。
+服务器是买的 Ucloud 的，没啥，就是便宜。之前的建站过程中，我分了 4 个块，主站，blog 站，note 站，box 站，note 和 box 都是一个默认的 html，主站用 threejs 跑了个 demo,博客站用的 vuepress-reco 主题构建的。
 
 时间长了以后，主站被我废弃了，前段时间萌生了自己写个博客站的想法，说干就干，然后博客站就是主站了，不再做区分。
 
@@ -32,7 +32,7 @@ tags:
 
 ### 问题
 
-服务器里之前建站的时候，http 服务器是用的 docker 的 nginx 镜像构建的，然而 cerbot 的 docker Image 看起来已经好久没更新了...也没啥人这么用。我这个 docker 菜鸟在容器里折腾了半天，决定放弃容器了...
+服务器里之前建站的时候，http 服务器是用的 docker 的 nginx 镜像构建的，然而 cerbot 的 docker Image 看起来已经好久没更新了...也没啥人这么用。我尝试了一下，每输一个命令，就会报一个新的错...吓坏我了...我这个 docker 菜鸟在容器里折腾了半天，决定放弃了...能力不够，还是老实按照官网来
 
 这也应征了那句话“Less is more”，搞不懂我当初就一个 Nginx，为啥还要装个 docker 装逼...
 
@@ -51,7 +51,7 @@ sudo systemctl status nginx //检查其运行状态
 
 然而我在`sudo snap install core; sudo snap refresh core`那里卡住了，死活过不去。
 
-总共提示过三个报错
+重复提示这俩报错，跟死循环一样：
 
 - `error: cannot communicate with server`
 
@@ -75,4 +75,8 @@ sudo systemctl status nginx //检查其运行状态
 
 ## 总结
 
-这次踩坑花了一下午时间，我还是得恶补一下操作系统的知识。然后刚又发现了新问题，站点是 https 的，但我博客文章里的图片，之前上传到七牛云图床的时候，绑定的域名是 cdn.clark-cui.top，是 http 的...在 https 的站点里就不加载了....要搞的话，得把 cdn 的域名也侬城 https...我醉了。想了下，我之前搞得这个图床 cdn 使用率基本小于 1%，本着 Less is more 的原则，我还是把原图扣出来吧
+这次踩坑花了一下午时间，我还是得恶补一下操作系统的知识。然后刚又发现了新问题，站点是 https 的，但我博客文章里的图片，之前上传到七牛云图床的时候，绑定的域名是 cdn.clark-cui.top，是 http 的...在 https 的站点里就不加载了....要搞的话，得把 cdn 的域名也侬城 https...我醉了。想了下，我之前搞得这个图床 cdn 使用率基本小于 1%，目前没需求那就是没用，~~我还是把原图扣出来吧。~~
+
+Done,
+
+Cheers!
