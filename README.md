@@ -28,8 +28,6 @@ yarn dev
 
 [vitepress-for-component](https://github.com/dewfall123/vitepress-for-component)
 
-[vitepress-docs-cn](https://github.com/docschina/vitepress-docs-cn)
-
 [vitepress-blog](https://github.com/Moking1997/vitepress-blog)
 
 [vitepress-blog-pure](https://github.com/airene/vitepress-blog-pure)
