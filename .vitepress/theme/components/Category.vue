@@ -2,12 +2,12 @@
   <div class="category" v-if="headers.length > 0">
     <ul>
       <li class="header" v-for="item in headers">
-        <a :href="`#${item.title}`" class="header-h1" v-if="item.level === 2">{{
+        <a :href="`#${item.slug}`" class="header-h1" v-if="item.level === 2">{{
           item.title
         }}</a>
         <ul v-if="item.level === 3">
           <li>
-            <a :href="`#${item.title}`" class="header-h2">{{ item.title }}</a>
+            <a :href="`#${item.slug}`" class="header-h2">{{ item.title }}</a>
           </li>
         </ul>
       </li>
@@ -18,7 +18,7 @@
 import { useData } from "vitepress";
 const pageData = useData();
 const headers = pageData.page.value.headers;
-// console.log(headers, "pageData");
+console.log(headers, "pageData");
 </script>
 <style scoped>
 .category {
