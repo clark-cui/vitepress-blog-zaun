@@ -1,6 +1,6 @@
 ## Hello
 
-This is my always wip personal webpage. You could [click here](https://clark-cui.top) to see what it looks like. 
+This is my always wip personal webpage. You could [click here](https://visionary-sunflower-dc7ae3.netlify.app/) to see what it looks like. 
 
 For now, It use vitepress & Vue & TypeScript to build.
 
