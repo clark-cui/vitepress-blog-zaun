@@ -1,4 +1,3 @@
-```
 ---
 title: React 简单优化
 description: React
@@ -6,7 +5,6 @@ date: 2022-09-03
 tags:
   - React
 ---
-```
 
 ### 优化的原因
 
