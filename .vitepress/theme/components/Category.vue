@@ -27,7 +27,7 @@ console.log(headers, "pageData");
   box-shadow: 6px 6px var(--c-brand);
   border: 4px solid #282936;
   color: var(--c-brand-light);
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 300px;
 }
 .header-h2 {
