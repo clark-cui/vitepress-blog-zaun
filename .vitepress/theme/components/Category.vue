@@ -27,6 +27,8 @@ console.log(headers, "pageData");
   box-shadow: 6px 6px var(--c-brand);
   border: 4px solid #282936;
   color: var(--c-brand-light);
+  overflow-y: scroll;
+  max-height: 300px;
 }
 .header-h2 {
   text-indent: 2;
@@ -34,11 +36,21 @@ console.log(headers, "pageData");
 ul {
   list-style-type: none;
 }
+@media (min-width: 768px) {
+  .category {
+    max-height: 400px;
+  }
+}
+@media (min-width: 1024px) {
+  .category {
+    max-height: 450px;
+  }
+}
 @media (min-width: 1400px) {
   .category {
     position: fixed;
     right: 20px;
+    max-height: 490px;
   }
 }
 </style>
-
