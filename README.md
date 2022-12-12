@@ -20,8 +20,8 @@ For now, It use vitepress & Vue & TypeScript to build.
 
 ```shell
 git clone
-yarn
-yarn dev
+pnpm install
+pnpm run dev
 ```
 
 ## Thanks
