@@ -1,6 +1,6 @@
 <template>
   <div class="category" v-if="headers.length > 0">
-    <ul>
+    <ul class="list">
       <li class="header" v-for="item in headers">
         <a :href="`#${item.slug}`" class="header-h1" v-if="item.level === 2">{{
           item.title
@@ -23,12 +23,19 @@ console.log(headers, "pageData");
 <style scoped>
 .category {
   width: 20rem;
-  background: var(--c-bg);
-  box-shadow: 6px 6px var(--c-brand);
+  background: var(--vp-c-bg);
+  box-shadow: 6px 6px var(--vp-c-brand);
   border: 4px solid #282936;
-  color: var(--c-brand-light);
+  color: var(--vp-c-brand-light);
   overflow-y: auto;
   max-height: 300px;
+}
+.list {
+  padding-left: 1.25em;
+  margin: 1rem 0;
+  line-height: 1.7;
+  list-style-type: none;
+  box-sizing: border-box;
 }
 .header-h2 {
   text-indent: 2;

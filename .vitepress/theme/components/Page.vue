@@ -131,6 +131,8 @@ const transDate = (date: string) => {
 .blog-title {
   text-align: center;
   font-weight: bold;
+  font-size: 2rem;
+  margin-top: 24px;
 }
 .blogList {
   padding: 30px 0;
@@ -146,19 +148,19 @@ const transDate = (date: string) => {
   border-radius: 10px;
   padding: 0 20px;
   margin: 10px;
-  background: var(--c-bg);
+  background: var(--vp-c-bg);
   max-width: 600px;
-  box-shadow: 6px 6px var(--c-brand);
+  box-shadow: 6px 6px var(--vp-c-brand);
   border: 4px solid #282936;
   cursor: pointer;
 }
 .blog:hover {
   text-decoration: none;
   transform: translate(-2px, -2px);
-  box-shadow: 10px 10px var(--c-brand);
+  box-shadow: 10px 10px var(--vp-c-brand);
 }
 .title {
-  color: var(--c-brand-light);
+  color: var(--vp-c-brand-light);
   font-size: 1.2em;
   font-weight: bold;
 }
@@ -191,7 +193,7 @@ const transDate = (date: string) => {
   transform: translate(-1px, -1px);
 }
 .activeLink {
-  background-color: var(--c-brand);
+  background-color: var(--vp-c-brand);
   color: white;
 }
 </style>

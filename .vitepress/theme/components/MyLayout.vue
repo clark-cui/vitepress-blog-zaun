@@ -8,7 +8,7 @@
       <Comments />
     </template>
     <!-- Home slot-->
-    <template #home-hero-image><HomeHero /> </template>
+    <template #home-hero-before><HomeHero /> </template>
     <template #home-features-after> <Page /></template>
   </Layout>
   <!-- copywright -->

@@ -1,6 +1,7 @@
 ---
 title: mac外接显示器
 description: mac外接显示器的坑
+aside: false
 date: 2021-10-15
 tags:
   - 环境配置
