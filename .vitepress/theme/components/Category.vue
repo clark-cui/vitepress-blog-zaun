@@ -18,7 +18,6 @@
 import { useData } from "vitepress";
 const pageData = useData();
 const headers = pageData.page.value.headers;
-console.log(headers, "pageData");
 </script>
 <style scoped>
 .category {

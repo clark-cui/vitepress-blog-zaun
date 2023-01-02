@@ -16,7 +16,6 @@ type pageData = {
   relativePath: string;
 };
 const pageData: pageData = useData().page.value;
-console.log(useData(), "ggwegw");
 const { title, description, lastUpdated, frontmatter } = pageData;
 dayjs.extend(relativeTime);
 
