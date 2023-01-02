@@ -1,10 +1,10 @@
 <template>
   <div class="shareCard">
-    <h1>
+    <h1 class="title">
       <img class="share-avator" src="/avator.jpg" />
       <span>Hi, I'm Clark Cui 👋</span>
     </h1>
-    <p>搬砖ing...</p>
+    <p class="description">搬砖ing...</p>
     <div class="cardPart">
       <div class="card" v-for="item in list" @click="go(item)">
         <svg
@@ -17,7 +17,7 @@
           width="30"
           height="30"
         >
-          <path :d="item.icon" fill="var(--c-brand)"></path>
+          <path :d="item.icon" fill="var(--vp-c-brand)"></path>
         </svg>
       </div>
     </div>
@@ -57,6 +57,15 @@ const go = (item: card) => {
   flex-direction: column;
   align-items: center;
 }
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 2.2em;
+  font-weight: bold;
+}
+.description {
+  margin: 1em 0;
+}
 .share-avator {
   width: 50px;
 }
@@ -70,4 +79,3 @@ const go = (item: card) => {
   transform: translate(-2px, -2px);
 }
 </style>
-

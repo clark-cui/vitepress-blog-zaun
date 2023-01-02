@@ -1,6 +1,7 @@
 ---
 title: 建站日记
 description: 这是服务器建站的一系列记录，早期的版本已经遗失，这里是目前的一些实践与想法
+aside: false
 date: 2020-01-10
 tags:
   - 建站

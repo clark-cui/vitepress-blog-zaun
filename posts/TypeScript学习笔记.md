@@ -1,6 +1,7 @@
 ---
 title: TypeScript学习笔记
 description: typescript学习笔记
+aside: false
 date: 2021-09-03
 tags:
   - typescript

@@ -61,7 +61,6 @@ async function config() {
           link: "/archives",
         },
       ],
-      sidebar: false,
       markdown: {
         config: (md) => {
           md.use(highlightjs);
