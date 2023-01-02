@@ -1,1 +1,5 @@
+---
+layout: page
+---
+
 <Tags/>
