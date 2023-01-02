@@ -1,0 +1,41 @@
+{
+  "hash": "6f9db19b",
+  "browserHash": "be65ad68",
+  "optimized": {
+    "vue": {
+      "src": "../../../node_modules/.pnpm/vue@3.2.45/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "f2469311",
+      "needsInterop": false
+    },
+    "lottie-web": {
+      "src": "../../../node_modules/.pnpm/lottie-web@5.10.0/node_modules/lottie-web/build/player/lottie.js",
+      "file": "lottie-web.js",
+      "fileHash": "7c8b977a",
+      "needsInterop": true
+    },
+    "gitalk": {
+      "src": "../../../node_modules/.pnpm/gitalk@1.8.0/node_modules/gitalk/dist/gitalk.js",
+      "file": "gitalk.js",
+      "fileHash": "8643cdee",
+      "needsInterop": true
+    },
+    "dayjs": {
+      "src": "../../../node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "6a97a65b",
+      "needsInterop": true
+    },
+    "dayjs/plugin/relativeTime": {
+      "src": "../../../node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/plugin/relativeTime.js",
+      "file": "dayjs_plugin_relativeTime.js",
+      "fileHash": "26160f30",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-RSJERJUL": {
+      "file": "chunk-RSJERJUL.js"
+    }
+  }
+}
