@@ -5,7 +5,7 @@
       <span>Hi, I'm Clark Cui 👋</span>
     </h1>
     <p class="description">搬砖ing...</p>
-    <div class="cardPart">
+    <!-- <div class="cardPart">
       <div class="card" v-for="item in list" @click="go(item)">
         <svg
           t="1641801440748"
@@ -20,7 +20,7 @@
           <path :d="item.icon" fill="var(--vp-c-brand)"></path>
         </svg>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
