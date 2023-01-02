@@ -9,15 +9,16 @@ import { onMounted } from "vue";
 // const relativePath = useData().page.value.relativePath;
 
 const gitalk = new Gitalk({
-  clientID: "94f8f287e970c48e2122",
-  clientSecret: "2a3c7be462ddf835cff98c4ffa7add4ba229ad7e",
+  clientID: "a8430bf8a0464113ee24",
+  clientSecret: "df4cbf03c4ceca8a39076e6b7a0fb878e55534e2",
   repo: "blog-comments",
   owner: "clark-cui",
   admin: ["clark-cui"],
-  id: decodeURI(window.location.pathname), // Ensure uniqueness and length less than 50
+  id: decodeURI(location.pathname.substring(0, 50)), // Ensure uniqueness and length less than 50
   language: "zh-CN",
   distractionFreeMode: true, // Facebook-like distraction free mode
 });
+
 onMounted(() => {
   gitalk.render("gitalk-container");
 });
