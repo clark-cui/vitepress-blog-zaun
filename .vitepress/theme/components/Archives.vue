@@ -27,7 +27,6 @@ import { useYearSort } from "../utils";
 
 const { theme } = useData();
 const data = computed(() => useYearSort(theme.value.posts));
-console.log(data, "data");
 </script>
 
 <style scoped>

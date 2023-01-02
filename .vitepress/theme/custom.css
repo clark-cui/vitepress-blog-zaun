@@ -1,20 +1,17 @@
-@font-face {
-  font-family: LXGWWenKaiLite;
-  src: url(./fonts/LXGWWenKaiLite-Regular.ttf);
-}
-
+@import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.6.0/style.min.css");
 :root {
   --vp-c-brand: #646cff;
   --vp-c-brand-light: #747bff;
   --vp-c-brand-dark: #747bff;
   --vp-c-hover: #212121;
   --vp-c-bg: #fff;
-  
-  --vp-font-family-base: LXGWWenKaiLite, "Inter var experimental", "Inter var",
+
+  --vp-font-family-base: "LXGW WenKai Lite", "Inter var experimental", "Inter var",
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
     Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --vp-font-family-mono: LXGWWenKaiLite, ui-monospace, SFMono-Regular, "SF Mono",
-    Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --vp-font-family-mono: "LXGW WenKai Mono Lite", ui-monospace, SFMono-Regular,
+    "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
 }
 .dark {
   --vp-c-bg: black;
