@@ -1,6 +1,6 @@
 <template>
   <h1 class="title">{{ title }}</h1>
-  <div class="date">🕒 lastUpdated: {{ date }}</div>
+  <div class="date">🕒 Published at: {{ publishDate }}</div>
   <!-- <div class="description">{{ description }}</div> -->
 </template>
 <script lang="ts" setup>
@@ -16,14 +16,15 @@ type pageData = {
   relativePath: string;
 };
 const pageData: pageData = useData().page.value;
-const { title, description, lastUpdated } = pageData;
-// /https://day.js.org/docs/zh-CN/plugin/relative-time
+console.log(useData(), "ggwegw");
+const { title, description, lastUpdated, frontmatter } = pageData;
 dayjs.extend(relativeTime);
-const date = dayjs().to(dayjs(lastUpdated));
+
+const publishDate = dayjs().to(dayjs(frontmatter.date || Date.now()));
 </script>
 <style scoped>
 .title {
-  color: #37463c;
+  color: var(--vp-c-text-1);
   font-weight: 600;
   font-size: 2.25em;
   margin-top: 0.3em;
@@ -42,4 +43,3 @@ const date = dayjs().to(dayjs(lastUpdated));
   border-bottom: 1px dashed #c7c7c7;
 }
 </style>
-

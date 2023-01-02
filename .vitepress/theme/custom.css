@@ -1,10 +1,20 @@
-/* .vitepress/theme/custom.css */
+@font-face {
+  font-family: LXGWWenKaiLite;
+  src: url(./fonts/LXGWWenKaiLite-Regular.ttf);
+}
+
 :root {
   --vp-c-brand: #646cff;
   --vp-c-brand-light: #747bff;
   --vp-c-brand-dark: #747bff;
   --vp-c-hover: #212121;
   --vp-c-bg: #fff;
+  
+  --vp-font-family-base: LXGWWenKaiLite, "Inter var experimental", "Inter var",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --vp-font-family-mono: LXGWWenKaiLite, ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .dark {
   --vp-c-bg: black;
@@ -18,4 +28,9 @@
 
 .theme {
   background-color: var(--vp-c-bg);
+}
+
+.vp-doc h2 {
+  margin-top: 0;
+  border-top: none;
 }

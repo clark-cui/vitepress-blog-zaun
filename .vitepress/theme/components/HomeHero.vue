@@ -2,7 +2,6 @@
   <div class="pic"></div>
 </template>
 <script lang="ts" setup>
-import avator from "../../../public/avator.jpg";
 import { onMounted } from "vue";
 import lottie from "lottie-web";
 onMounted(() => {
@@ -30,5 +29,6 @@ onMounted(() => {
 <style scoped>
 .pic {
   text-align: center;
+  height: 300px;
 }
 </style>
