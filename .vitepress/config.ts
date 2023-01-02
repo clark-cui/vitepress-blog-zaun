@@ -1,4 +1,5 @@
 import { getPosts, getPostLength } from "./theme/serverUtils";
+import highlightjs from "markdown-it-highlightjs";
 
 async function config() {
   return {
@@ -44,14 +45,8 @@ async function config() {
       // docsBranch: "master",
       lastUpdated: false,
       posts: await getPosts(),
-      pageSize: 5, //几个为一页
-      postLength: await getPostLength(), //博客有几篇
-
-      //       algolia: {
-      //         apiKey: "90a0bae6ff7307fb76896cbe2f975b0c",
-      //         indexName: "clark-cui-docs",
-      //       },
-
+      pageSize: 5,
+      postLength: await getPostLength(),
       nav: [
         {
           text: "🏡Home",
@@ -66,12 +61,12 @@ async function config() {
           link: "/archives",
         },
       ],
-
-      // sidebar: {
-      //   "./posts/": false,
-      //   "/": false,
-      // },
       sidebar: false,
+      markdown: {
+        config: (md) => {
+          md.use(highlightjs);
+        },
+      },
     },
   };
 }
