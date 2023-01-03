@@ -3,7 +3,9 @@
     <h1 class="title">
       <span>Hi, I'm Clark Cui 👋</span>
     </h1>
-    <p class="description">搬砖ing...</p>
+    <p class="description">
+      A frontend developer(he/him) which is building in web3.
+    </p>
   </div>
 </template>
 
