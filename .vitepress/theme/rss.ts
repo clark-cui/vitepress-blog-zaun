@@ -6,7 +6,7 @@ import MarkdownIt from "markdown-it";
 import type { FeedOptions, Item } from "feed";
 import { Feed } from "feed";
 
-const DOMAIN = "https://clark-cui.top/";
+const DOMAIN = "https://clark-cui.top";
 const AUTHOR = {
   name: "Clark Cui",
   email: "rongchuancui@gmail.com",
@@ -28,13 +28,13 @@ async function generateRSS() {
   const options = {
     title: "Clark Cui",
     description: "Clark Cui' Blog",
-    id: DOMAIN,
-    link: DOMAIN,
+    id: `${DOMAIN}/`,
+    link: `${DOMAIN}/`,
     copyright: "MIT License",
     feedLinks: {
-      json: DOMAIN + "feed.json",
-      atom: DOMAIN + "feed.atom",
-      rss: DOMAIN + "feed.xml",
+      json: DOMAIN + "/feed.json",
+      atom: DOMAIN + "/feed.atom",
+      rss: DOMAIN + "/feed.xml",
     },
   };
   const posts: any[] = (
@@ -53,7 +53,7 @@ async function generateRSS() {
             date: new Date(data.date),
             content: html,
             author: [AUTHOR],
-            link: DOMAIN,
+            link: `${DOMAIN}/${i.replace(".md", ".html")}`,
           };
         })
     )
