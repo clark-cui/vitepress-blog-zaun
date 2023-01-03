@@ -38,7 +38,7 @@ async function config() {
         },
       ],
     ],
-    cleanUrls: "with-subfolders",
+    // cleanUrls: "with-subfolders",
     lastUpdated: false,
     themeConfig: {
       // repo: "clark-cui/homeSite",
@@ -63,7 +63,7 @@ async function config() {
         },
         {
           text: "🔥RSS",
-          link: "/feed.xml",
+          link: "https://clark-cui.top/feed.xml",
         },
       ],
       markdown: {
