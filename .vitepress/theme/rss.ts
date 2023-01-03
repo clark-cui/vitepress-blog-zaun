@@ -12,6 +12,22 @@ const AUTHOR = {
   email: "rongchuancui@gmail.com",
   link: DOMAIN,
 };
+const OPTIONS: FeedOptions = {
+  title: "Clark Cui",
+  description: "Clark Cui' Blog",
+  id: `${DOMAIN}/`,
+  link: `${DOMAIN}/`,
+  copyright: "MIT License",
+  feedLinks: {
+    json: DOMAIN + "/feed.json",
+    atom: DOMAIN + "/feed.atom",
+    rss: DOMAIN + "/feed.xml",
+  },
+  author: AUTHOR,
+  image: "https://clark-cui.top/horse.svg",
+  favicon: "https://clark-cui.top/horse.svg",
+};
+
 const markdown = MarkdownIt({
   html: true,
   breaks: true,
@@ -19,24 +35,13 @@ const markdown = MarkdownIt({
 });
 
 export async function buildBlogRSS() {
-  await generateRSS();
+  const posts = await generateRSS();
+  writeFeed("feed", posts);
 }
 
 async function generateRSS() {
   const files = await fg("posts/*.md");
 
-  const options = {
-    title: "Clark Cui",
-    description: "Clark Cui' Blog",
-    id: `${DOMAIN}/`,
-    link: `${DOMAIN}/`,
-    copyright: "MIT License",
-    feedLinks: {
-      json: DOMAIN + "/feed.json",
-      atom: DOMAIN + "/feed.atom",
-      rss: DOMAIN + "/feed.xml",
-    },
-  };
   const posts: any[] = (
     await Promise.all(
       files
@@ -60,17 +65,11 @@ async function generateRSS() {
   ).filter(Boolean);
 
   posts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
-
-  await writeFeed("feed", options, posts);
+  return posts;
 }
 
-async function writeFeed(name: string, options: FeedOptions, items: Item[]) {
-  options.author = AUTHOR;
-  options.image = "https://clark-cui.top/horse.svg";
-  options.favicon = "https://clark-cui.top/horse.svg";
-
-  const feed = new Feed(options);
-
+async function writeFeed(name: string, items: Item[]) {
+  const feed = new Feed(OPTIONS);
   items.forEach((item) => feed.addItem(item));
 
   await fs.ensureDir(dirname(`./.vitepress/dist/${name}`));
