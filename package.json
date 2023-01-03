@@ -5,10 +5,13 @@
   "author": "clark-cui <cuirongchuan@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "fast-glob": "^3.2.12",
+    "feed": "^4.2.2",
     "fs-extra": "^11.1.0",
     "globby": "11.0.4",
     "gray-matter": "^4.0.3",
     "lottie-web": "^5.10.0",
+    "markdown-it": "^13.0.1",
     "vitepress": "1.0.0-alpha.32"
   },
   "scripts": {

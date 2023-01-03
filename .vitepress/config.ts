@@ -1,5 +1,6 @@
 import { getPosts, getPostLength } from "./theme/serverUtils";
 import highlightjs from "markdown-it-highlightjs";
+import { buildBlogRSS } from "./theme/rss";
 
 async function config() {
   return {
@@ -37,6 +38,7 @@ async function config() {
         },
       ],
     ],
+    cleanUrls: "with-subfolders",
     lastUpdated: false,
     themeConfig: {
       // repo: "clark-cui/homeSite",
@@ -59,6 +61,10 @@ async function config() {
           text: "📃Archives",
           link: "/archives",
         },
+        {
+          text: "🔥RSS",
+          link: "/feed.xml",
+        },
       ],
       markdown: {
         config: (md) => {
@@ -78,6 +84,7 @@ async function config() {
         },
       ],
     },
+    buildEnd: buildBlogRSS,
   };
 }
 export default config();
