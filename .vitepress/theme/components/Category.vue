@@ -24,7 +24,7 @@ const headers = pageData.page.value.headers;
   width: 20rem;
   background: var(--vp-c-bg);
   box-shadow: 6px 6px var(--vp-c-brand);
-  border: 4px solid #282936;
+  border: 4px solid #3f4e4f;
   color: var(--vp-c-brand-light);
   overflow-y: auto;
   max-height: 300px;

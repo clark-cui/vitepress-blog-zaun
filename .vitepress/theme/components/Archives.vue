@@ -52,7 +52,7 @@ const data = computed(() => useYearSort(theme.value.posts));
   align-items: center;
   justify-content: space-between;
   margin: 10px 10px;
-  color: #666;
+  color: var(--vp-c-text-2);
   transition: border 0.3s ease, color 0.3s ease;
 }
 .article:hover {
