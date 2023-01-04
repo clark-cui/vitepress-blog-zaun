@@ -151,7 +151,7 @@ const transDate = (date: string) => {
   background: var(--vp-c-bg);
   max-width: 600px;
   box-shadow: 6px 6px var(--vp-c-brand);
-  border: 4px solid #282936;
+  border: 4px solid #3f4e4f;
   cursor: pointer;
 }
 .blog:hover {
@@ -180,14 +180,14 @@ const transDate = (date: string) => {
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid #282936;
+  border: 1px solid #3f4e4f;
   cursor: pointer;
   border-right: none;
   transition: 0.2s;
   border-radius: 2px;
 }
 .link:last-child {
-  border-right: 1px solid #282936;
+  border-right: 1px solid #3f4e4f;
 }
 .link:hover {
   transform: translate(-1px, -1px);

@@ -1,22 +1,24 @@
 @import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.6.0/style.min.css");
 :root {
-  --vp-c-brand: #646cff;
-  --vp-c-brand-light: #747bff;
-  --vp-c-brand-dark: #747bff;
+  --vp-c-brand: #a27b5c;
+  --vp-c-brand-light: #a27b5c;
+  --vp-c-brand-dark: #a27b5c;
   --vp-c-hover: #212121;
-  --vp-c-bg: #fff;
+  --vp-c-bg: #faf6f1;
+  --vp-c-bg-alpha-with-backdrop: rgba(250, 246, 241, 0.7);
 
-  --vp-font-family-base: "LXGW WenKai Lite", "Inter var experimental", "Inter var",
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --vp-font-family-base: "LXGW WenKai Lite", "Inter var experimental",
+    "Inter var", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   --vp-font-family-mono: "LXGW WenKai Mono Lite", ui-monospace, SFMono-Regular,
     "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
 }
 .dark {
-  --vp-c-bg: black;
+  --vp-c-bg: #2c3639;
   --vp-c-text: white;
   --vp-c-hover: #ffffff;
+  --vp-c-bg-alpha-with-backdrop: rgba(44, 54, 57, 0.7);
 }
 #app {
   min-height: 100vh;
