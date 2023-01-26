@@ -1,5 +1,4 @@
 import { getPosts, getPostLength } from "./theme/serverUtils";
-import highlightjs from "markdown-it-highlightjs";
 import { buildBlogRSS } from "./theme/rss";
 
 async function config() {
@@ -66,11 +65,6 @@ async function config() {
           link: "https://clark-cui.top/feed.xml",
         },
       ],
-      markdown: {
-        config: (md) => {
-          md.use(highlightjs);
-        },
-      },
       socialLinks: [
         { icon: "github", link: "https://github.com/clark-cui" },
         { icon: "twitter", link: "https://twitter.com/qingshuihe1" },
@@ -85,6 +79,7 @@ async function config() {
       ],
     },
     buildEnd: buildBlogRSS,
+
   };
 }
 export default config();
