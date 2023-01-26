@@ -9,26 +9,29 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Use Node.js 12.x
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v2.1.4 # 使用node环境
         with:
-          node-version: '12.x' # 版本12
+          node-version: '14.x' # 版本12
 
-      - name: Cache node modules
-        id: cache # 缓存id
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules # 缓存名字
-        with:
-          path: node_modules # 缓存路径
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
+      # - name: Cache node modules
+      #   id: cache # 缓存id
+      #   uses: actions/cache@v2
+      #   env:
+      #     cache-name: cache-node-modules # 缓存名字
+      #   with:
+      #     path: node_modules # 缓存路径
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
+
+      - name: Install pnpm
+        run: npm i pnpm -g
 
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
-        run: npm install # 安装依赖
+        # if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
+        run: pnpm i # 安装依赖
 
       - name: Build Packages
-        run: npm run build #  打包文件
+        run: pnpm run build #  打包文件
         
       # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
       - name: reset git
