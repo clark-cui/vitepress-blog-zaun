@@ -21,6 +21,11 @@ This is a blog theme used vitepress to build. You could [click here](https://vis
 npx degit clark-cui/vitepress-blog-zaun my-vitepress-blog
 cd my-vitepress-blog
 pnpm i # If you didn't install pnpm,you can run: npm install -g pnpm
+pnpm dev 
+```
+
+If you want to view rss result, you should run
+```shell
 pnpm run build
 pnpm run serve
 ```
