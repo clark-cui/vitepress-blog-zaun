@@ -170,7 +170,7 @@ const transDate = (date: string) => {
 .pagination {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   position: absolute;
   bottom: 70px;
   width: 100%;
