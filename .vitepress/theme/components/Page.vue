@@ -170,27 +170,25 @@ const transDate = (date: string) => {
 .pagination {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: absolute;
   bottom: 70px;
   width: 100%;
+  flex-wrap: wrap;
+  padding: 0 3.5rem;
 }
 .link {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
   text-align: center;
-  border: 1px solid #3f4e4f;
   cursor: pointer;
-  border-right: none;
   transition: 0.2s;
-  border-radius: 2px;
+  border-radius: 2rem;
 }
-.link:last-child {
-  border-right: 1px solid #3f4e4f;
-}
+
 .link:hover {
-  transform: translate(-1px, -1px);
+  opacity: 0.7;
 }
 .activeLink {
   background-color: var(--vp-c-brand);
