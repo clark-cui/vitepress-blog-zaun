@@ -13,7 +13,7 @@
     "gray-matter": "^4.0.3",
     "lottie-web": "^5.10.0",
     "markdown-it": "^13.0.1",
-    "vitepress": "1.0.0-alpha.41",
+    "vitepress": "1.0.0-alpha.45",
     "vitepress-plugin-search": "1.0.4-alpha.19"
   },
   "scripts": {
