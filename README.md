@@ -14,7 +14,6 @@ This is a blog theme used vitepress to build. You could [click here](https://vis
 - [x] github actions
 - [x] mobile + desktop
 - [x] RSS
-- [x] Search(powered by https://github.com/emersonbottero/vitepress-plugin-search )
 ## Start
 
 ```shell
