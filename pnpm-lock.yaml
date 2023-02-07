@@ -4,6 +4,7 @@ specifiers:
   dayjs: ^1.11.7
   fast-glob: ^3.2.12
   feed: ^4.2.2
+  flexsearch: ^0.7.31
   fs-extra: ^11.1.0
   gitalk: ^1.8.0
   globby: 11.0.4
@@ -11,6 +12,7 @@ specifiers:
   lottie-web: ^5.10.0
   markdown-it: ^13.0.1
   vitepress: 1.0.0-alpha.41
+  vitepress-plugin-search: 1.0.4-alpha.19
 
 dependencies:
   dayjs: 1.11.7
@@ -19,12 +21,14 @@ dependencies:
 devDependencies:
   fast-glob: 3.2.12
   feed: 4.2.2
+  flexsearch: 0.7.31
   fs-extra: 11.1.0
   globby: 11.0.4
   gray-matter: 4.0.3
   lottie-web: 5.10.0
   markdown-it: 13.0.1
   vitepress: 1.0.0-alpha.41
+  vitepress-plugin-search: 1.0.4-alpha.19_pcxuvif3ksvid5p6bxkeory7e4
 
 packages:
 
@@ -422,6 +426,25 @@ packages:
       fastq: 1.14.0
     dev: true
 
+  /@types/flexsearch/0.7.3:
+    resolution: {integrity: sha512-HXwADeHEP4exXkCIwy2n1+i0f1ilP1ETQOH5KDOugjkTFZPntWo0Gr8stZOaebkxsdx+k0X/K6obU/+it07ocg==}
+    dev: true
+
+  /@types/linkify-it/3.0.2:
+    resolution: {integrity: sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==}
+    dev: true
+
+  /@types/markdown-it/12.2.3:
+    resolution: {integrity: sha512-GKMHFfv3458yYy+v/N8gjufHO6MSZKCOXpZc5GXIWWy8uldwfmPn98vp81gZ5f9SVw8YYBctgfJ22a2d7AOMeQ==}
+    dependencies:
+      '@types/linkify-it': 3.0.2
+      '@types/mdurl': 1.0.2
+    dev: true
+
+  /@types/mdurl/1.0.2:
+    resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
+    dev: true
+
   /@types/web-bluetooth/0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
     dev: true
@@ -778,6 +801,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
+    dev: true
+
+  /flexsearch/0.7.31:
+    resolution: {integrity: sha512-XGozTsMPYkm+6b5QL3Z9wQcJjNYxp0CYn3U1gO7dwD6PAqU1SVWZxI9CCg3z+ml3YfqdPnrBehaBrnH2AGKbNA==}
     dev: true
 
   /follow-redirects/1.5.10:
@@ -1473,6 +1500,21 @@ packages:
       rollup: 3.7.5
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vitepress-plugin-search/1.0.4-alpha.19_pcxuvif3ksvid5p6bxkeory7e4:
+    resolution: {integrity: sha512-WFOPn5dStyMINd+rVjNxbEmGa7U+qGHLxLnda56EG+ATil1i0yOauGhJEh5LPMvuCUVIA9tInJnFXklOBb39dA==}
+    engines: {node: ^14.13.1 || ^16.7.0 || >=18}
+    peerDependencies:
+      flexsearch: ^0.7.31
+      vitepress: ^1.0.0-alpha.13
+      vue: '3'
+    dependencies:
+      '@types/flexsearch': 0.7.3
+      '@types/markdown-it': 12.2.3
+      flexsearch: 0.7.31
+      markdown-it: 13.0.1
+      vitepress: 1.0.0-alpha.41
     dev: true
 
   /vitepress/1.0.0-alpha.41:
