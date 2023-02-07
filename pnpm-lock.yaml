@@ -11,7 +11,7 @@ specifiers:
   gray-matter: ^4.0.3
   lottie-web: ^5.10.0
   markdown-it: ^13.0.1
-  vitepress: 1.0.0-alpha.41
+  vitepress: 1.0.0-alpha.45
   vitepress-plugin-search: 1.0.4-alpha.19
 
 dependencies:
@@ -27,8 +27,8 @@ devDependencies:
   gray-matter: 4.0.3
   lottie-web: 5.10.0
   markdown-it: 13.0.1
-  vitepress: 1.0.0-alpha.41
-  vitepress-plugin-search: 1.0.4-alpha.19_pcxuvif3ksvid5p6bxkeory7e4
+  vitepress: 1.0.0-alpha.45
+  vitepress-plugin-search: 1.0.4-alpha.19_rm4ex7r262723rz2msyzlvrkpm
 
 packages:
 
@@ -547,24 +547,24 @@ packages:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: true
 
-  /@vueuse/core/9.11.1_vue@3.2.45:
-    resolution: {integrity: sha512-E/cizD1w9ILkq4axYjZrXLkKaBfzloaby2n3NMjUfd6yI/jkfTVgc6iwy/Cw2e++Ld4LphGbO+3MhzizvwUslQ==}
+  /@vueuse/core/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-h/Di8Bvf6xRcvS/PvUVheiMYYz3U0tH3X25YxONSaAUBa841ayMwxkuzx/DGUMCW/wHWzD8tRy2zYmOC36r4sg==}
     dependencies:
       '@types/web-bluetooth': 0.0.16
-      '@vueuse/metadata': 9.11.1
-      '@vueuse/shared': 9.11.1_vue@3.2.45
+      '@vueuse/metadata': 9.12.0
+      '@vueuse/shared': 9.12.0_vue@3.2.45
       vue-demi: 0.13.11_vue@3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
     dev: true
 
-  /@vueuse/metadata/9.11.1:
-    resolution: {integrity: sha512-ABjkrG+VXggNhjfGyw5e/sekxTZfXTwjrYXkkWQmQ7Biyv+Gq9UD6IDNfeGvQZEINI0Qzw6nfuO2UFCd3hlrxQ==}
+  /@vueuse/metadata/9.12.0:
+    resolution: {integrity: sha512-9oJ9MM9lFLlmvxXUqsR1wLt1uF7EVbP5iYaHJYqk+G2PbMjY6EXvZeTjbdO89HgoF5cI6z49o2zT/jD9SVoNpQ==}
     dev: true
 
-  /@vueuse/shared/9.11.1_vue@3.2.45:
-    resolution: {integrity: sha512-UTZYGAjT96hWn4buf4wstZbeheBVNcKPQuej6qpoSkjF1atdaeCD6kqm9uGL2waHfisSgH9mq0qCRiBOk5C/2w==}
+  /@vueuse/shared/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-TWuJLACQ0BVithVTRbex4Wf1a1VaRuSpVeyEd4vMUWl54PzlE0ciFUshKCXnlLuD0lxIaLK4Ypj3NXYzZh4+SQ==}
     dependencies:
       vue-demi: 0.13.11_vue@3.2.45
     transitivePeerDependencies:
@@ -589,6 +589,10 @@ packages:
       '@algolia/requester-common': 4.14.2
       '@algolia/requester-node-http': 4.14.2
       '@algolia/transporter': 4.14.2
+    dev: true
+
+  /ansi-sequence-parser/1.1.0:
+    resolution: {integrity: sha512-lEm8mt52to2fT8GhciPCGeCXACSz2UwIN4X2e2LJSnZ5uAbn2/dsYdOmUXq0AtWS5cpAupysIneExOgH0Vd2TQ==}
     dev: true
 
   /argparse/1.0.10:
@@ -1360,9 +1364,10 @@ packages:
       kind-of: 6.0.3
     dev: true
 
-  /shiki/0.13.0:
-    resolution: {integrity: sha512-QucKtRFyoHgivnde/6tXu+7ZfUhcg02qiFlUSa4X0jQvHVKdtrimWPlbg+q06H2EeNSuj9DcMhtB18GgtDLsmw==}
+  /shiki/0.14.0:
+    resolution: {integrity: sha512-fb9Fg1Yx/ElVJcTqPQIEOSfn7mSZlrT1W3CkymY08lL2Jsi+t7jPcZzKO1lCsQwlSDuyNhHvolnyA2OI4EgJNg==}
     dependencies:
+      ansi-sequence-parser: 1.1.0
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.7.0
       vscode-textmate: 8.0.0
@@ -1502,7 +1507,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress-plugin-search/1.0.4-alpha.19_pcxuvif3ksvid5p6bxkeory7e4:
+  /vitepress-plugin-search/1.0.4-alpha.19_rm4ex7r262723rz2msyzlvrkpm:
     resolution: {integrity: sha512-WFOPn5dStyMINd+rVjNxbEmGa7U+qGHLxLnda56EG+ATil1i0yOauGhJEh5LPMvuCUVIA9tInJnFXklOBb39dA==}
     engines: {node: ^14.13.1 || ^16.7.0 || >=18}
     peerDependencies:
@@ -1514,20 +1519,20 @@ packages:
       '@types/markdown-it': 12.2.3
       flexsearch: 0.7.31
       markdown-it: 13.0.1
-      vitepress: 1.0.0-alpha.41
+      vitepress: 1.0.0-alpha.45
     dev: true
 
-  /vitepress/1.0.0-alpha.41:
-    resolution: {integrity: sha512-fsSHCyxJVnAf4/BSxiZBoGaqFtdLurYDsL5qvZ3xXx6WO4WAqWuh5dX2ch1Gv0keMQkbiVcgkhln3bNiQqrulQ==}
+  /vitepress/1.0.0-alpha.45:
+    resolution: {integrity: sha512-8AVWdymQqBUPmXmAbpapDDg18iDmkNJ47l5eOklBlAjj3n8P3zDAsBhOWSQ6+Nvm6+/GaZATyAvsrg47JD5Idw==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.2
       '@docsearch/js': 3.3.2
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
       '@vue/devtools-api': 6.5.0
-      '@vueuse/core': 9.11.1_vue@3.2.45
+      '@vueuse/core': 9.12.0_vue@3.2.45
       body-scroll-lock: 4.0.0-beta.0
-      shiki: 0.13.0
+      shiki: 0.14.0
       vite: 4.0.4
       vue: 3.2.45
     transitivePeerDependencies:
