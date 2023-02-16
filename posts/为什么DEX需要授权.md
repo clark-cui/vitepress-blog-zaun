@@ -179,11 +179,11 @@ from把自己的金库钥匙给msg.sender这个动作，就是授权
 
 2. ETH虽然是ethereum的原生代币，但是ETH并不是ERC-20代币，那么我们该怎么在ethereum上转账ETH呢？
 
-​		答案是使用WETH，wrapped eth 就是ERC-20的了。
+    答案是直接转即可，不需要授权。
 
-​		还有别的方法吗？
+3. 假如想要实现像DEX这样的使用场景，那么只有两种办法，一种就是用WETH(ERC-20)，另一种就是合约做兼容，专门处理ETH的SWAP，普遍来说就是再写一个合约方法，SWAP、SWAPETH。
 
-挖坑，以后再来研究
+
 
 ### references
 
