@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1 class="tags-header">Tags</h1>
+    <h1 class="tags-header">标签</h1>
     <div class="tags">
       <span
         @click="toggleTag(key)"
