@@ -1,0 +1,48 @@
+name: CI/CD # 此工作流程（workflow）的名字
+on: push # 触发此文件运行的条件
+  # 设置可以手动执行(参考：https://tongjunsz.gitee.io/2021/03/18/GitHub-Actions-%E6%89%8B%E5%8A%A8%E8%A7%A6%E5%8F%91%E6%96%B9%E5%BC%8F/)
+  workflow_dispatch:
+jobs:
+  FTP-Deploy-Action:
+    name: CI&CD # 此任务（job）的名字
+    runs-on: ubuntu-latest # 运行环境
+    steps:
+      - uses: actions/checkout@master # 切换分支到main
+        with:
+          fetch-depth: 2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.1.4 # 使用node环境
+        with:
+          node-version: '14.x' # 版本12
+
+      # - name: Cache node modules
+      #   id: cache # 缓存id
+      #   uses: actions/cache@v2
+      #   env:
+      #     cache-name: cache-node-modules # 缓存名字
+      #   with:
+      #     path: node_modules # 缓存路径
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
+
+      - name: Install pnpm
+        run: npm i pnpm -g
+
+      - name: Install Dependencies
+        # if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
+        run: pnpm i # 安装依赖
+
+      - name: Build Packages
+        run: pnpm run build #  打包文件
+        
+      # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
+      - name: reset git
+        run: git reset --hard
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.PRESS_TOKEN_TEA_BLOG }}
+          BRANCH: gh-pages
+          FOLDER: ./.vitepress/dist
+
