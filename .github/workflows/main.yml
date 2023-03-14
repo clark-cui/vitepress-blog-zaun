@@ -9,10 +9,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v2.1.4 # 使用node环境
         with:
-          node-version: '14.x' # 版本12
+          node-version: '18.x' # 版本12
 
       # - name: Cache node modules
       #   id: cache # 缓存id
