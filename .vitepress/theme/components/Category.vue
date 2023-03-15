@@ -6,7 +6,7 @@
           item.title
         }}</a>
         <ul v-if="item.level === 3">
-          <li>
+          <li class="header">
             <a
               :href="item.link"
               :class="['header-h3', { showIndent: showIndent }]"
@@ -56,6 +56,11 @@ onContentUpdated(() => {
 }
 ul {
   list-style-type: none;
+}
+.header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 @media (min-width: 768px) {
   .category {
