@@ -1,7 +1,6 @@
 <template>
   <h1 class="title">{{ title }}</h1>
   <div class="date">🕒 Published at: {{ publishDate }}</div>
-  <!-- <div class="description">{{ description }}</div> -->
 </template>
 <script lang="ts" setup>
 import { useData } from "vitepress";

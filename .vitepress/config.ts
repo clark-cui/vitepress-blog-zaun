@@ -77,9 +77,9 @@ async function config() {
           link: "mailto:rongchuancui@gmail.com",
         },
       ],
+      // outline: 2, //设置右侧aside显示层级
     },
     buildEnd: buildBlogRSS,
-
   };
 }
 export default config();

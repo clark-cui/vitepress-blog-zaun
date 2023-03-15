@@ -33,3 +33,7 @@
   margin-top: 0;
   border-top: none;
 }
+
+.VPDocOutlineDropdown{
+  display: none !important;
+}
