@@ -2,12 +2,16 @@
   <div class="category" v-if="headers.length > 0">
     <ul class="list">
       <li class="header" v-for="item in headers">
-        <a :href="`#${item.slug}`" class="header-h1" v-if="item.level === 2">{{
+        <a :href="item.link" class="header-h2" v-if="item.level === 2">{{
           item.title
         }}</a>
         <ul v-if="item.level === 3">
           <li>
-            <a :href="`#${item.slug}`" class="header-h2">{{ item.title }}</a>
+            <a
+              :href="item.link"
+              :class="['header-h3', { showIndent: showIndent }]"
+              >{{ item.title }}</a
+            >
           </li>
         </ul>
       </li>
@@ -15,9 +19,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useData } from "vitepress";
-const pageData = useData();
-const headers = pageData.page.value.headers;
+import { useData, onContentUpdated } from "vitepress";
+import { shallowRef, ref } from "vue";
+import { getHeaders } from "../utils";
+
+const { frontmatter, theme } = useData();
+const headers = shallowRef<any>([]);
+const showIndent = ref(false);
+onContentUpdated(() => {
+  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline);
+  showIndent.value = headers.value.some((header) => {
+    return header.level === 2;
+  });
+});
 </script>
 <style scoped>
 .category {
@@ -36,8 +50,9 @@ const headers = pageData.page.value.headers;
   list-style-type: none;
   box-sizing: border-box;
 }
-.header-h2 {
-  text-indent: 2;
+
+.showIndent {
+  padding-left: 1rem;
 }
 ul {
   list-style-type: none;
