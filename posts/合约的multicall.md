@@ -25,7 +25,7 @@ tags:
 
 **Multicall:**
 
-原始合约，包含一个批量调用的聚合方法
+最基础的 multicall，包含一个批量调用的方法 aggregate
 
 ```Solidity
 // SPDX-License-Identifier: MIT
@@ -53,7 +53,9 @@ bytes callData;
 
 **Multicall2:**
 
-与 Multicall 相同，但提供了额外的功能，允许批量内的调用失败。对于调用可能根据合同的状态而失败的情况很有用。
+aggregate 方法里的`require(success)`这行代码，表示该方法只允许批量调用均成功才会返回数据，只要有一个调用失败，整个方法就会抛出错误。
+
+所以 Multicall2,在继承了 Multicall 的所有方法后，额外增加了 tryBlockAndAggregate 方法，该方法允许传入一个 requireSuccess 的参数，来控制是否允许批量调用的失败
 
 ```Solidity
 function tryAggregate(bool requireSuccess, Call[] calldata calls) public returns (Result[] memory returnData) {
@@ -82,7 +84,12 @@ for (uint256 i = 0; i < calls.length; i++) {
 
 **Multicall3:**
 
-这是推荐的版本。它的 ABI 向后兼容 Multicall 和 Multicall2，但它的使用成本更低（所以你可以在一个请求中容纳更多的调用），而且它增加了一个 aggregate3 方法，所以你可以在每个调用的基础上指定是否允许调用失败。
+这是推荐的版本。
+
+同样，Multicall3 向下兼容 Multicall2，继承了 Multicall2 的所有方法。它和 Multicall2 不一样的点在于
+
+1. 它允许控制每一项调用是否允许失败，而不是像 Multicall2 那样只能控制所有的调用是否允许失败。这个功能通过 aggregate3 方法实现，传入的 calldata 里可以拼入 allowFailure，来控制每一项调用是否开启允许失败。
+2. 但它的使用成本更低，因为它做了 gas 消耗的优化
 
 ```Solidity
 function aggregate3(Call3[] calldata calls) public payable returns (Result[] memory returnData) {
@@ -270,17 +277,22 @@ const { address, abi, functionName, ...rest } = contracts[i];
 
 ## 问题
 
-1. 为什么 wagmi 的 multicall 调用 allowFailure 并不是每一项都可配置？https://wagmi.sh/core/actions/multicall#allowfailure-optional
+1. 为什么 [wagmi](https://wagmi.sh/core/actions/multicall#allowfailure-optional) 的 multicall 所传入的 allowFailure 并不可以每一个调用独立配置？
 
 答：是这个库故意这么封装的，可以看到他把 multicall 方法接收的参数 allowFailure 在遍历 calls 的时候拼接进去了
 
-2. 为什么上面提到的都是读方法，写方法可以 multicall 吗？
+2 为什么上面提到的都是读方法，写方法可以 multicall 吗？
 
-答：可可以。但是一般不建议这么做，一般写方法的聚合会在合约端实现，并不需要前端调用的时候去 multicall。因为如果需要在合约里调用合约，那么合约去实现的话，会在实现的时候有一定的优化，直接 multicall 粗暴的调用不安全，也会消耗更多的 gas。而且批量调用写合约的时候，msg.sender 和 msg.value 可能会不符合预期。所以大部分封装了 multicall 的库都会提示，他们的 multicall 方法只支持 read-only 方法的聚合调用https://docs.ethers.org/v5/api/contract/contract/#Contract--readonly
+答：可以。但是一般不建议这么做:
+
+- 一般写方法的聚合会在合约端实现，并不需要前端调用的时候去 multicall。
+- 如果需要在合约里调用合约，那么一般合约会单独封装方法来实现。这么做可以对消耗 gas 实现优化
+- 直接 multicall 粗暴的调用不安全，因为这个时候，msg.sender 、 msg.value、tx.origin 等值可能会因为上下文不一样而导致执行结果不符合预期。
+  所以大部分封装了 multicall 的库都会提示，他们的 multicall 方法只支持 [read-only](https://docs.ethers.org/v5/api/contract/contract/#Contract--readonly) 的聚合调用
 
 3. Dex 的首次 swap，需要先授权，再进行 swap，那这一步可以通过 multicall，来实现授权转账合并为 1 步吗？
 
-答：不行。因为转账这步操作依赖授权的结果，这俩动作并不能同时进行。转账需要在授权的结果上链之后，才可以进行
+答：不行。因为转账这步操作依赖授权的结果，这俩动作并不能在一个区块上同时进行。转账需要在授权的结果上链之后，才可以进行
 
 ## reference
 
