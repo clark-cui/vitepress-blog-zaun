@@ -42,6 +42,7 @@ async function config() {
     themeConfig: {
       // repo: "clark-cui/homeSite",
       logo: "/horse.svg",
+      avator:'/avator.png',
       docsDir: "/",
       // docsBranch: "master",
       posts: await getPosts(),

@@ -13,12 +13,15 @@
   --vp-font-family-mono: "LXGW WenKai Mono Lite", ui-monospace, SFMono-Regular,
     "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
+  --vp-avator-border: #ffffff;
 }
 .dark {
   --vp-c-bg: #2c3639;
   --vp-c-text: white;
   --vp-c-hover: #ffffff;
   --vp-c-bg-alpha-with-backdrop: rgba(44, 54, 57, 0.7);
+  --vp-avator-border: #3f4e4f;
+
 }
 #app {
   min-height: 100vh;
@@ -34,6 +37,6 @@
   border-top: none;
 }
 
-.VPDocOutlineDropdown{
+.VPDocOutlineDropdown {
   display: none !important;
 }

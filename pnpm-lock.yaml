@@ -8,7 +8,6 @@ specifiers:
   gitalk: ^1.8.0
   globby: 11.0.4
   gray-matter: ^4.0.3
-  lottie-web: ^5.10.2
   markdown-it: ^13.0.1
   vitepress: 1.0.0-alpha.59
 
@@ -22,7 +21,6 @@ devDependencies:
   fs-extra: 11.1.0
   globby: 11.0.4
   gray-matter: 4.0.3
-  lottie-web: 5.10.2
   markdown-it: 13.0.1
   vitepress: 1.0.0-alpha.59
 
@@ -1167,10 +1165,6 @@ packages:
     dependencies:
       js-tokens: 4.0.0
     dev: false
-
-  /lottie-web/5.10.2:
-    resolution: {integrity: sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==}
-    dev: true
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
