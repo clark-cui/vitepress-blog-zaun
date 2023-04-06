@@ -7,6 +7,11 @@
   --vp-c-bg: #faf6f1;
   --vp-c-bg-alpha-with-backdrop: rgba(250, 246, 241, 0.7);
 
+  --vp-c-color-b: #26ccff;
+  --vp-c-color-c: #0cb9ed;
+  --vp-c-color-d: #a15000;
+  --vp-c-color-e: #ed7c0c;
+
   --vp-font-family-base: "LXGW WenKai Lite", "Inter var experimental",
     "Inter var", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -21,7 +26,6 @@
   --vp-c-hover: #ffffff;
   --vp-c-bg-alpha-with-backdrop: rgba(44, 54, 57, 0.7);
   --vp-avator-border: #3f4e4f;
-
 }
 #app {
   min-height: 100vh;
@@ -40,3 +44,5 @@
 .VPDocOutlineDropdown {
   display: none !important;
 }
+
+
