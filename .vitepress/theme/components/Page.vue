@@ -8,25 +8,27 @@
     </a>
   </div>
   <div class="pagination">
-    <div
-      class="link"
-      :class="{ activeLink: pageCurrent === i }"
-      v-for="i in pagesNum"
-      :key="i"
-      @click="go(i)"
+    <button class="left" v-if="pageCurrent > 1" @click="go(pageCurrent - 1)">
+      Previous page
+    </button>
+    <div v-if="pagesNum > 1">{{ `${pageCurrent}/${pagesNum}` }}</div>
+    <button
+      class="right"
+      v-if="pageCurrent < pagesNum"
+      @click="go(pageCurrent + 1)"
     >
-      {{ i }}
-    </div>
+      Next page
+    </button>
   </div>
 </template>
 <script lang="ts" setup>
+import { ref } from "vue";
+import ShareCard from "./ShareCard.vue";
+import { useData, withBase } from "vitepress";
 interface post {
   regularPath: string;
   frontMatter: object;
 }
-import { onMounted, ref, reactive } from "vue";
-import ShareCard from "./ShareCard.vue";
-import { useData, withBase } from "vitepress";
 const { theme } = useData();
 
 // get posts
@@ -136,7 +138,7 @@ const transDate = (date: string) => {
 }
 .blogList {
   padding: 30px 0;
-  padding-bottom: 120px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,27 +173,44 @@ const transDate = (date: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 70px;
-  width: 100%;
-  flex-wrap: wrap;
-  padding: 0 3.5rem;
-}
-.link {
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-  border-radius: 2rem;
+  width: 85%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.link:hover {
-  opacity: 0.7;
+button {
+  display: inline-block;
+  position: relative;
+  color: var(--vp-c-color-d);
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
 }
-.activeLink {
-  background-color: var(--vp-c-brand);
-  color: white;
+
+button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--vp-c-color-d);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+button:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.left {
+  position: absolute;
+  left: 0;
+}
+.right {
+  position: absolute;
+  right: 0;
 }
 </style>
