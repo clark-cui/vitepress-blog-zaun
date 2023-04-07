@@ -1,10 +1,10 @@
 <template>
-  <ShareCard />
-  <h1 class="blog-title">Blogs</h1>
   <div class="pyro">
     <div class="before"></div>
     <div class="after"></div>
   </div>
+  <ShareCard />
+  <h1 class="blog-title">Blogs</h1>
   <div class="blogList">
     <a class="blog" v-for="item in posts" :href="withBase(item.regularPath)">
       <div class="title">{{ item.frontMatter.title }}</div>
@@ -295,7 +295,7 @@ button:hover::after {
   }
   20%,
   39.9% {
-    margin-top: 23%;
+    margin-top: 20%;
     margin-left: 30%;
   }
   40%,
