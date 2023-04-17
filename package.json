@@ -11,7 +11,7 @@
     "globby": "11.0.4",
     "gray-matter": "^4.0.3",
     "markdown-it": "^13.0.1",
-    "vitepress": "1.0.0-alpha.65"
+    "vitepress": "1.0.0-alpha.71"
   },
   "scripts": {
     "dev": "vitepress dev ",

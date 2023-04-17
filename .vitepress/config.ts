@@ -43,6 +43,9 @@ async function config() {
       // repo: "clark-cui/homeSite",
       logo: "/horse.svg",
       avator:'/avator.png',
+      search: {
+        provider: 'local'
+      },
       docsDir: "/",
       // docsBranch: "master",
       posts: await getPosts(),
