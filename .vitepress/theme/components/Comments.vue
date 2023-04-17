@@ -4,11 +4,20 @@
 <script lang="ts" setup>
 import "gitalk/dist/gitalk.css";
 import Gitalk from "gitalk";
-import { onMounted } from "vue";
-// import { useData } from "vitepress";
-// const relativePath = useData().page.value.relativePath;
+import { onContentUpdated, useRouter } from "vitepress";
 
-onMounted(() => {
+// const { route, go } = useRouter();
+function deleteChild() {
+  const element = document.querySelector("#gitalk-container");
+  let child = element?.lastElementChild;
+  while (child) {
+    element?.removeChild(child);
+    child = element?.lastElementChild;
+  }
+}
+onContentUpdated(() => {
+  // reset gittalk element for update
+  deleteChild();
   const gitalk = new Gitalk({
     clientID: "a8430bf8a0464113ee24",
     clientSecret: "df4cbf03c4ceca8a39076e6b7a0fb878e55534e2",

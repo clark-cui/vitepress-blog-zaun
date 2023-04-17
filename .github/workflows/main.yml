@@ -33,16 +33,16 @@ jobs:
       - name: Build Packages
         run: pnpm run build #  打包文件
         
-      # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
-      - name: reset git
-        run: git reset --hard
+      # # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
+      # - name: reset git
+      #   run: git reset --hard
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
-        with:
-          ftp-server: sftp://${{ secrets.FTP_IP }}/usr/local/src/pre/home # 服务器地址和端口（可以填域名，不过我服务器做了全站加速会导向加速结点的IP，所以只能用服务器的IP）
-          ftp-username: ${{ secrets.FTP_USERNAME }} # FTP用户名
-          ftp-password: ${{ secrets.FTP_PASSWORD }} # FTP密码
-          git-ftp-args: --insecure # （如果是FTP连接的话--insecure不用加）
-          local-dir: ./.vitepress/dist # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
+      # - name: FTP-Deploy-Action
+      #   uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      #   with:
+      #     ftp-server: sftp://${{ secrets.FTP_IP }}/usr/local/src/pre/home # 服务器地址和端口（可以填域名，不过我服务器做了全站加速会导向加速结点的IP，所以只能用服务器的IP）
+      #     ftp-username: ${{ secrets.FTP_USERNAME }} # FTP用户名
+      #     ftp-password: ${{ secrets.FTP_PASSWORD }} # FTP密码
+      #     git-ftp-args: --insecure # （如果是FTP连接的话--insecure不用加）
+      #     local-dir: ./.vitepress/dist # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
 

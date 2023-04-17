@@ -1,9 +1,11 @@
 <template>
-  <h1 class="title">{{ title }}</h1>
+  <h1 class="title">{{ pageData.title }}</h1>
   <div class="date">🕒 Published at: {{ publishDate }}</div>
 </template>
 <script lang="ts" setup>
-import { useData } from "vitepress";
+import { useData, onContentUpdated } from "vitepress";
+import { ref, reactive } from "vue";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 type pageData = {
@@ -14,11 +16,13 @@ type pageData = {
   lastUpdated: number;
   relativePath: string;
 };
-const pageData: pageData = useData().page.value;
-const { title, description, lastUpdated, frontmatter } = pageData;
+const pageData: pageData = useData().page;
+const publishDate = ref("");
 dayjs.extend(relativeTime);
-
-const publishDate = dayjs().to(dayjs(frontmatter.date || Date.now()));
+onContentUpdated(() => {
+  const { frontmatter } = pageData.value;
+  publishDate.value = dayjs().to(dayjs(frontmatter.date || Date.now()));
+});
 </script>
 <style scoped>
 .title {
