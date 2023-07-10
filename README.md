@@ -15,7 +15,7 @@ This is a blog theme used vitepress to build. You could [click here](https://vis
 - [x] mobile + desktop
 - [x] RSS
 - [x] Local Search
-
+- [x] Math Equation(markdown-it-mathjax3)
 ## Start
 
 ```shell
