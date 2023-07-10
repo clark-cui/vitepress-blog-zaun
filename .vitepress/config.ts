@@ -85,6 +85,11 @@ async function config() {
       aside: false,
     },
     buildEnd: buildBlogRSS,
+    markdown: {
+      config: (md) => {
+        md.use(require("markdown-it-mathjax3"));
+      },
+    },
   };
 }
 export default config();
