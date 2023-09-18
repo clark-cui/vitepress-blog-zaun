@@ -42,9 +42,9 @@ async function config() {
     themeConfig: {
       // repo: "clark-cui/homeSite",
       logo: "/horse.svg",
-      avator:'/avator.png',
+      avator: "/avator.png",
       search: {
-        provider: 'local'
+        provider: "local",
       },
       docsDir: "/",
       // docsBranch: "master",
@@ -83,6 +83,7 @@ async function config() {
       ],
       // outline: 2, //设置右侧aside显示层级
       aside: false,
+      showFireworksAnimation: true,
     },
     buildEnd: buildBlogRSS,
     markdown: {
