@@ -16,6 +16,8 @@ This is a blog theme used vitepress to build. You could [click here](https://vis
 - [x] RSS
 - [x] Local Search
 - [x] Math Equation(markdown-it-mathjax3)
+- [x] type information with jsdoc on code snippets (by https://shikiji.netlify.app/packages/markdown-it )
+
 ## Start
 
 ```shell
