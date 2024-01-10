@@ -7,8 +7,7 @@ import Gitalk from "gitalk";
 import { onContentUpdated, useRouter } from "vitepress";
 
 // const { route, go } = useRouter();
-function deleteChild() {
-  const element = document.querySelector("#gitalk-container");
+function deleteChild(element: HTMLDivElement | null) {
   let child = element?.lastElementChild;
   while (child) {
     element?.removeChild(child);
@@ -17,7 +16,11 @@ function deleteChild() {
 }
 onContentUpdated(() => {
   // reset gittalk element for update
-  deleteChild();
+  const element = document.querySelector("#gitalk-container");
+  if (!element) {
+    return;
+  }
+  deleteChild(element);
   const gitalk = new Gitalk({
     clientID: "a8430bf8a0464113ee24",
     clientSecret: "df4cbf03c4ceca8a39076e6b7a0fb878e55534e2",

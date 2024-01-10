@@ -1,17 +1,18 @@
-import DefaultTheme from "vitepress/theme";
+import Theme from "vitepress/theme";
 import Archives from "./components/Archives.vue";
 import Tags from "./components/Tags.vue";
 import MyLayout from "./components/MyLayout.vue";
+import TwoSlashFloatingVue from "vitepress-plugin-twoslash/client";
+
 import "./custom.css";
 
 export default {
-  ...DefaultTheme,
+  extends: Theme,
   Layout: MyLayout,
-  enhanceApp(ctx) {
-    DefaultTheme.enhanceApp(ctx);
-    const { app } = ctx;
+  enhanceApp({ app }) {
     // register global components
     app.component("Archives", Archives);
     app.component("Tags", Tags);
+    app.use(TwoSlashFloatingVue);
   },
 };
