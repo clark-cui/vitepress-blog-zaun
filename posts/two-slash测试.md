@@ -16,7 +16,7 @@ VitePress provides [a few options for customizing Shikiji](https://github.com/vu
 
 ### TwoSlash
 
-To enable [TypeScript TwoSlash](/packages/twoslash) (type hover on code snippets) in VitePress, we provide a VitePress plugin for easy setup. Pre-styled, with [Floating Vue](https://floating-vue.starpad.dev/) to display the type information out side of the code container.
+To enable TypeScript TwoSlash(type hover on code snippets) in VitePress, we provide a VitePress plugin for easy setup. Pre-styled, with [Floating Vue](https://floating-vue.starpad.dev/) to display the type information out side of the code container.
 
 ```bash
 npm i -D vitepress-plugin-twoslash

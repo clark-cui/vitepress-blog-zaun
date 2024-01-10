@@ -99,6 +99,11 @@ async function config() {
         md.use(mathjax3);
       },
     },
+    vite: {
+      ssr: {
+        noExternal: ["vitepress-plugin-twoslash"],
+      },
+    },
   };
 }
 export default config();
