@@ -14,8 +14,8 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.0.0",
     "markdown-it-mathjax3": "^4.3.2",
-    "vitepress": "1.0.0-rc.36",
-    "vitepress-plugin-twoslash": "^0.9.18"
+    "vitepress": "1.0.0-rc.40",
+    "vitepress-plugin-twoslash": "^0.10.0"
   },
   "scripts": {
     "dev": "vitepress dev ",
