@@ -36,4 +36,4 @@ pnpm run serve
 ## Announcement
 Due to my busy work, I don't have a lot of time to maintain this theme, and currently it's just an usual dependency upgrade.
 This theme is more suitable for developers with experience, you can fork my repository, custom modification.
-For users who don't know how to code, you may encounter problems when you will be more crazy, I'm happy to help, but if I reply to the delay please forgive me.
+For users who don't know how to code, you may encounter problems and feel uncomfortable, I'm happy to help, but if I reply to the delay please forgive me.
