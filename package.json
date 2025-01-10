@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@shikijs/vitepress-twoslash": "^1.24.2",
+    "@shikijs/vitepress-twoslash": "^1.26.1",
     "dayjs": "^1.11.10",
     "fast-glob": "^3.3.2",
     "feed": "^4.2.2",
@@ -15,7 +15,7 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
     "markdown-it-mathjax3": "^4.3.2",
-    "shiki": "^1.24.2",
+    "shiki": "^1.26.1",
     "vitepress": "1.5.0"
   },
   "scripts": {
