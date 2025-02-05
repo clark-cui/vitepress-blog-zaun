@@ -20,7 +20,7 @@ onContentUpdated(() => {
   if (!element) {
     return;
   }
-  deleteChild(element);
+  deleteChild(element as HTMLDivElement);
   const gitalk = new Gitalk({
     clientID: "a8430bf8a0464113ee24",
     clientSecret: "df4cbf03c4ceca8a39076e6b7a0fb878e55534e2",
@@ -34,4 +34,9 @@ onContentUpdated(() => {
   gitalk.render("gitalk-container");
 });
 </script>
-<style scoped></style>
+<style scoped>
+/* Use :deep(<inner-selector>) instead of ::v-deep <inner-selector>. */
+#gitalk-container :deep(.gt-header-textarea) {
+  color: #2c3e50;
+}
+</style>
