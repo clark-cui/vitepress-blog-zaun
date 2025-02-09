@@ -1,48 +1,62 @@
-on: push # 触发此文件运行的条件
-name: CI/CD # 此工作流程（workflow）的名字
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [master]
+
+# 设置tokenn访问权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  FTP-Deploy-Action:
-    name: CI&CD # 此任务（job）的名字
-    runs-on: ubuntu-latest # 运行环境
+  # 构建工作
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master # 切换分支到main
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 2
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v2.1.4 # 使用node环境
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
         with:
-          node-version: '18.x' # 版本12
+          version: 8.6.12 # 指定需要的 pnpm 版本
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm # 设置缓存
+      - name: Setup Pages
+        uses: actions/configure-pages@v3  # 在工作流程自动配置GithubPages
+      - name: Install dependencies
+        run: pnpm install # 安装依赖
+      - name: Build with VitePress
+        run: |
+          pnpm run docs:build # 启动项目
+          touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2  # 上传构建产物
+        with:
+          path: .vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
 
-      # - name: Cache node modules
-      #   id: cache # 缓存id
-      #   uses: actions/cache@v2
-      #   env:
-      #     cache-name: cache-node-modules # 缓存名字
-      #   with:
-      #     path: node_modules # 缓存路径
-      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
-
-      - name: Install pnpm
-        run: npm i pnpm -g
-
-      - name: Install Dependencies
-        # if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
-        run: pnpm i # 安装依赖
-
-      - name: Build Packages
-        run: pnpm run build #  打包文件
-        
-      # # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
-      # - name: reset git
-      #   run: git reset --hard
-
-      # - name: FTP-Deploy-Action
-      #   uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      #   with:
-      #     ftp-server: sftp://${{ secrets.FTP_IP }}/usr/local/src/pre/home # 服务器地址和端口（可以填域名，不过我服务器做了全站加速会导向加速结点的IP，所以只能用服务器的IP）
-      #     ftp-username: ${{ secrets.FTP_USERNAME }} # FTP用户名
-      #     ftp-password: ${{ secrets.FTP_PASSWORD }} # FTP密码
-      #     git-ftp-args: --insecure # （如果是FTP连接的话--insecure不用加）
-      #     local-dir: ./.vitepress/dist # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # 从后续的输出中获取部署后的页面URL
+    needs: build    # 在build后面完成
+    runs-on: ubuntu-latest  # 运行在最新版本的ubuntu系统上
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment  # 指定id
+        uses: actions/deploy-pages@v2 # 将之前的构建产物部署到github pages中
 
