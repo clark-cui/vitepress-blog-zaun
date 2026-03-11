@@ -230,7 +230,6 @@ function onDrawerLinkClick(e: MouseEvent): void {
   color: var(--vp-c-brand);
   background: var(--vp-c-bg-elv);
 }
-
 /* ===== Drawer ===== */
 .notes-drawer-overlay {
   position: fixed;

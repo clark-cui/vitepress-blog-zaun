@@ -15,14 +15,18 @@ interface BlogThemeConfig {
   pageSize: number
   postLength: number
   notesSidebar: NoteCategory[]
-  nav: { text: string; link: string }[]
-  socialLinks: { icon: string | { svg: string }; link: string }[]
+  nav: any[]
+  socialLinks: any[]
   aside: boolean
   showFireworksAnimation: boolean
 }
 
 const EMAIL_ICON_SVG = `<svg role="img" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20">
   <path d="M874.666667 375.189333V746.666667a64 64 0 0 1-64 64H213.333333a64 64 0 0 1-64-64V375.189333l266.090667 225.6a149.333333 149.333333 0 0 0 193.152 0L874.666667 375.189333zM810.666667 213.333333a64.789333 64.789333 0 0 1 22.826666 4.181334 63.616 63.616 0 0 1 26.794667 19.413333 64.32 64.32 0 0 1 9.344 15.466667c2.773333 6.570667 4.48 13.696 4.906667 21.184L874.666667 277.333333v21.333334L553.536 572.586667a64 64 0 0 1-79.893333 2.538666l-3.178667-2.56L149.333333 298.666667v-21.333334a63.786667 63.786667 0 0 1 35.136-57.130666A63.872 63.872 0 0 1 213.333333 213.333333h597.333334z" />
+</svg>`
+
+const RSS_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20">
+  <path fill="currentColor" d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/>
 </svg>`
 
 export default async () => {
@@ -41,16 +45,16 @@ export default async () => {
     postLength: posts.length,
     notesSidebar,
     nav: [
-      { text: '🏡Blogs', link: '/' },
-      { text: '📒Notes', link: notesSidebar[0]?.items[0]?.path ?? '/notes/' },
-      { text: '🔖Tags', link: '/tags' },
-      { text: '📃Archives', link: '/archives' },
-      { text: '🔥RSS', link: 'https://clark-cui.top/feed.xml' },
+      { text: 'Notes', link: notesSidebar[0]?.items[0]?.path ?? '/notes/' },
+      { text: 'Blogs', link: '/blogs/' },
+      { text: 'Tags', link: '/tags' },
+      { text: 'Archives', link: '/archives' },
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/clark-cui' },
-      { icon: 'twitter', link: 'https://twitter.com/qingshuihe1' },
-      { icon: { svg: EMAIL_ICON_SVG }, link: 'mailto:rongchuancui@gmail.com' },
+      { icon: 'github', link: 'https://github.com/clark-cui', ariaLabel: 'GitHub' },
+      { icon: 'twitter', link: 'https://twitter.com/qingshuihe1', ariaLabel: 'Twitter' },
+      { icon: { svg: EMAIL_ICON_SVG }, link: 'mailto:rongchuancui@gmail.com', ariaLabel: 'Email' },
+      { icon: { svg: RSS_ICON_SVG }, link: 'https://clark-cui.top/feed.xml', ariaLabel: 'RSS' },
     ],
     aside: false,
     showFireworksAnimation: false,

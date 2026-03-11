@@ -44,3 +44,28 @@
 .VPDocOutlineDropdown {
   display: none !important;
 }
+
+/* Prevent nav tabs from collapsing when theme toggle is present */
+.VPNavBar .VPNavBarMenu {
+  display: flex !important;
+}
+
+/* Nav tab icons via ::before */
+.VPNavBarMenuLink[href*="/notes/"]::before { content: "\1F4D6\00a0"; }
+.VPNavBarMenuLink[href*="/blogs/"]::before { content: "\270D\FE0F\00a0"; }
+.VPNavBarMenuLink[href="/tags"]::before { content: "\1F3F7\FE0F\00a0"; }
+.VPNavBarMenuLink[href="/archives"]::before { content: "\1F4C5\00a0"; }
+
+/* Small screens: hide nav text, show only icons */
+@media (max-width: 768px) {
+  .VPNavBarMenuLink::before {
+    margin-right: 0;
+  }
+  .VPNavBarMenuLink {
+    font-size: 0 !important;
+    padding: 0 8px !important;
+  }
+  .VPNavBarMenuLink::before {
+    font-size: 16px;
+  }
+}

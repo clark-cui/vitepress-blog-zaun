@@ -1,6 +1,7 @@
 ---
-layout: home
-date: 2021-06-30
-title: home
+layout: page
+title: About
 sidebar: false
 ---
+
+<AboutMe/>

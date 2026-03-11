@@ -6,6 +6,7 @@ import '@shikijs/vitepress-twoslash/style.css'
 
 import Archives from './components/Archives.vue'
 import Tags from './components/Tags.vue'
+import AboutMe from './components/AboutMe.vue'
 import MyLayout from './components/MyLayout.vue'
 import './custom.css'
 
@@ -29,6 +30,7 @@ export default {
   enhanceApp({ app, router }: EnhanceAppContext) {
     app.component('Archives', Archives)
     app.component('Tags', Tags)
+    app.component('AboutMe', AboutMe)
     app.use(TwoslashFloatingVue)
 
     if (inBrowser) {
