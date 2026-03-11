@@ -53,7 +53,6 @@
 /* Nav tab icons via ::before */
 .VPNavBarMenuLink[href*="/notes/"]::before { content: "\1F4D6\00a0"; }
 .VPNavBarMenuLink[href*="/blogs/"]::before { content: "\270D\FE0F\00a0"; }
-.VPNavBarMenuLink[href="/tags"]::before { content: "\1F3F7\FE0F\00a0"; }
 .VPNavBarMenuLink[href="/archives"]::before { content: "\1F4C5\00a0"; }
 
 /* Small screens: hide nav text, show only icons */

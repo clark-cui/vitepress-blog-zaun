@@ -47,7 +47,6 @@ export default async () => {
     nav: [
       { text: 'Notes', link: notesSidebar[0]?.items[0]?.path ?? '/notes/' },
       { text: 'Blogs', link: '/blogs/' },
-      { text: 'Tags', link: '/tags' },
       { text: 'Archives', link: '/archives' },
     ],
     socialLinks: [
