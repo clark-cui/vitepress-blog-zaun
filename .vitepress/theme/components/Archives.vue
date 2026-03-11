@@ -1,13 +1,13 @@
 <template>
   <div class="main">
-    <div v-for="yearList in data" class="yearItem">
+    <div v-for="(yearList, idx) in yearGroups" :key="idx" class="year-item">
       <div class="year">
-        {{ yearList[0].frontMatter.date.split("-")[0] }}
+        {{ yearList[0].frontMatter.date.split('-')[0] }}
       </div>
       <a
+        v-for="article in yearList"
+        :key="article.regularPath"
         :href="withBase(article.regularPath)"
-        v-for="(article, index) in yearList"
-        :key="index"
         class="article"
       >
         <div class="title">
@@ -21,12 +21,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useData, withBase } from "vitepress";
-import { computed } from "vue";
-import { useYearSort } from "../utils";
+import { computed } from 'vue'
+import { useData, withBase } from 'vitepress'
+import { useYearSort } from '../utils'
 
-const { theme } = useData();
-const data = computed(() => useYearSort(theme.value.posts));
+const { theme } = useData()
+const yearGroups = computed(() => useYearSort(theme.value.posts))
 </script>
 
 <style scoped>
@@ -35,10 +35,10 @@ const data = computed(() => useYearSort(theme.value.posts));
   padding: 0.5rem 1.5rem 4rem;
   max-width: 48rem;
 }
-.yearItem {
+.year-item {
   border-bottom: 1px dashed #c7c7c7;
 }
-.yearItem:last-child {
+.year-item:last-child {
   border: none;
 }
 .year {

@@ -1,29 +1,25 @@
 <template>
-  <h1 class="title">{{ pageData.title }}</h1>
+  <h1 class="title">{{ page.title }}</h1>
   <div class="date">🕒 Published at: {{ publishDate }}</div>
 </template>
-<script lang="ts" setup>
-import { useData, onContentUpdated } from "vitepress";
-import { ref, reactive } from "vue";
 
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-type pageData = {
-  description: string;
-  title: string;
-  frontmatter: object;
-  headers: object[];
-  lastUpdated: number;
-  relativePath: string;
-};
-const pageData: pageData = useData().page;
-const publishDate = ref("");
-dayjs.extend(relativeTime);
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { useData, onContentUpdated } from 'vitepress'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
+
+const { page } = useData()
+const publishDate = ref('')
+
 onContentUpdated(() => {
-  const { frontmatter } = pageData.value;
-  publishDate.value = dayjs().to(dayjs(frontmatter.date || Date.now()));
-});
+  const { frontmatter } = page.value
+  publishDate.value = dayjs().to(dayjs(frontmatter.date || Date.now()))
+})
 </script>
+
 <style scoped>
 .title {
   color: var(--vp-c-text-1);

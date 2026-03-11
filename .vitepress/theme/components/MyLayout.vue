@@ -6,30 +6,36 @@
     </template>
     <template #doc-after>
       <div>
-        <button @click="back">cd ··</button>
+        <button @click="goBack">cd ..</button>
       </div>
       <Comments />
     </template>
-    <!-- Home slot-->
-    <template #home-hero-before><HomeHero /> </template>
-    <template #home-features-after> <Page /></template>
+    <template #home-hero-before>
+      <HomeHero />
+    </template>
+    <template #home-features-after>
+      <Page />
+    </template>
   </Layout>
-  <!-- copywright -->
   <CopyWright />
 </template>
+
 <script lang="ts" setup>
-import DefaultTheme from "vitepress/theme";
-import HomeHero from "./HomeHero.vue";
-import CopyWright from "./CopyWright.vue";
-import Comments from "./Comments.vue";
-import Page from "./Page.vue";
-import Category from "./Category.vue";
-import Title from "./Title.vue";
-const { Layout } = DefaultTheme;
-const back = () => {
-  history.back();
-};
+import DefaultTheme from 'vitepress/theme'
+import HomeHero from './HomeHero.vue'
+import CopyWright from './CopyWright.vue'
+import Comments from './Comments.vue'
+import Page from './Page.vue'
+import Category from './Category.vue'
+import Title from './Title.vue'
+
+const { Layout } = DefaultTheme
+
+function goBack(): void {
+  history.back()
+}
 </script>
+
 <style scoped>
 button {
   display: inline-block;

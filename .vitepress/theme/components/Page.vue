@@ -2,134 +2,67 @@
   <FireWorksAnimation />
   <ShareCard />
   <h1 class="blog-title">Blogs</h1>
-  <div class="blogList">
-    <a class="blog" v-for="item in posts" :href="withBase(item.regularPath)">
+  <div class="blog-list">
+    <a
+      v-for="item in currentPagePosts"
+      :key="item.regularPath"
+      class="blog"
+      :href="withBase(item.regularPath)"
+    >
       <div class="title">{{ item.frontMatter.title }}</div>
-      <div class="date">{{ transDate(item.frontMatter.date) }}</div>
+      <div class="date">{{ formatDate(item.frontMatter.date) }}</div>
     </a>
   </div>
-  <div class="pagination">
-    <button class="left" v-if="pageCurrent > 1" @click="go(pageCurrent - 1)">
+  <div v-if="totalPages > 1" class="pagination">
+    <button v-if="currentPage > 1" class="left" @click="goToPage(currentPage - 1)">
       Previous page
     </button>
-    <div v-if="pagesNum > 1">{{ `${pageCurrent}/${pagesNum}` }}</div>
-    <button
-      class="right"
-      v-if="pageCurrent < pagesNum"
-      @click="go(pageCurrent + 1)"
-    >
+    <div>{{ `${currentPage}/${totalPages}` }}</div>
+    <button v-if="currentPage < totalPages" class="right" @click="goToPage(currentPage + 1)">
       Next page
     </button>
   </div>
 </template>
+
 <script lang="ts" setup>
-import { ref } from "vue";
-import ShareCard from "./ShareCard.vue";
-import FireWorksAnimation from "./FireWorksAnimation.vue";
-import { useData, withBase } from "vitepress";
-interface post {
-  regularPath: string;
-  frontMatter: object;
-}
-const { theme } = useData();
+import { computed, ref } from 'vue'
+import { useData, withBase } from 'vitepress'
+import ShareCard from './ShareCard.vue'
+import FireWorksAnimation from './FireWorksAnimation.vue'
+import type { Post } from '../serverUtils'
 
-// get posts
-let postsAll = theme.value.posts || [];
-// get postLength
-let postLength = theme.value.postLength;
-// get pageSize
-let pageSize = theme.value.pageSize;
+const MONTH_NAMES = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+] as const
 
-//  pagesNum
-let pagesNum =
-  postLength % pageSize === 0
-    ? postLength / pageSize
-    : postLength / pageSize + 1;
-pagesNum = parseInt(pagesNum.toString());
-//pageCurrent
-let pageCurrent = ref(1);
-// filter index post
-postsAll = postsAll.filter((item: post) => {
-  return item.regularPath.indexOf("index") < 0;
-});
-// pagination
-let allMap = {};
-for (let i = 0; i < pagesNum; i++) {
-  allMap[i] = [];
-}
-let index = 0;
-for (let i = 0; i < postsAll.length; i++) {
-  if (allMap[index].length > pageSize - 1) {
-    index += 1;
-  }
-  allMap[index].push(postsAll[i]);
-}
-// set posts
-let posts = ref([]);
-posts.value = allMap[pageCurrent.value - 1];
+const { theme } = useData()
 
-// click pagination
-const go = (i) => {
-  pageCurrent.value = i;
-  posts.value = allMap[pageCurrent.value - 1];
-};
-// timestamp transform
-const transDate = (date: string) => {
-  const dateArray = date.split("-");
-  let year = dateArray[0],
-    month = ``,
-    day = dateArray[2];
-  switch (dateArray[1]) {
-    case "1":
-    case "01":
-      month = `Jan`;
-      break;
-    case "2":
-    case "02":
-      month = `Feb`;
-      break;
-    case "3":
-    case "03":
-      month = `Mar`;
-      break;
-    case "4":
-    case "04":
-      month = `Apr`;
-      break;
-    case "5":
-    case "05":
-      month = `May`;
-      break;
-    case "6":
-    case "06":
-      month = `Jun`;
-      break;
-    case "7":
-    case "07":
-      month = `Jul`;
-      break;
-    case "8":
-    case "08":
-      month = `Aug`;
-      break;
-    case "9":
-    case "09":
-      month = `Sep`;
-      break;
-    case "10":
-      month = `Oct`;
-      break;
-    case "11":
-      month = `Nov`;
-      break;
-    case "12":
-      month = `Dec`;
-      break;
-    default:
-      month = `Month`;
-  }
-  return `${month} ${day}, ${year}`;
-};
+const allPosts = computed<Post[]>(() => {
+  const posts: Post[] = theme.value.posts ?? []
+  return posts.filter((item) => !item.regularPath.includes('index'))
+})
+
+const pageSize = computed<number>(() => theme.value.pageSize ?? 5)
+const totalPages = computed(() => Math.ceil(allPosts.value.length / pageSize.value))
+
+const currentPage = ref(1)
+
+const currentPagePosts = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  return allPosts.value.slice(start, start + pageSize.value)
+})
+
+function goToPage(page: number): void {
+  currentPage.value = page
+}
+
+function formatDate(date: string): string {
+  const [year, month, day] = date.split('-')
+  const monthIndex = Number.parseInt(month, 10) - 1
+  const monthName = MONTH_NAMES[monthIndex] ?? 'Month'
+  return `${monthName} ${day}, ${year}`
+}
 </script>
 
 <style scoped>
@@ -139,9 +72,8 @@ const transDate = (date: string) => {
   font-size: 2rem;
   margin-top: 24px;
 }
-.blogList {
+.blog-list {
   padding: 30px 0;
-  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;

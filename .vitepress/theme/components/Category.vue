@@ -1,38 +1,37 @@
 <template>
-  <div class="category" v-if="headers.length > 0">
+  <div v-if="headers.length > 0" class="category">
     <ul class="list">
-      <li class="header" v-for="item in headers">
-        <a :href="item.link" class="header-h2" v-if="item.level === 2">{{
-          item.title
-        }}</a>
+      <li v-for="item in headers" :key="item.link" class="header">
+        <a v-if="item.level === 2" :href="item.link" class="header-h2">
+          {{ item.title }}
+        </a>
         <ul v-if="item.level === 3">
           <li class="header">
-            <a
-              :href="item.link"
-              :class="['header-h3', { showIndent: showIndent }]"
-              >{{ item.title }}</a
-            >
+            <a :href="item.link" :class="['header-h3', { 'show-indent': showIndent }]">
+              {{ item.title }}
+            </a>
           </li>
         </ul>
       </li>
     </ul>
   </div>
 </template>
-<script lang="ts" setup>
-import { useData, onContentUpdated } from "vitepress";
-import { shallowRef, ref } from "vue";
-import { getHeaders } from "../utils";
 
-const { frontmatter, theme } = useData();
-const headers = shallowRef<any>([]);
-const showIndent = ref(false);
+<script lang="ts" setup>
+import { shallowRef, ref } from 'vue'
+import { onContentUpdated } from 'vitepress'
+import { getHeaders } from '../utils'
+import type { HeaderItem } from '../utils'
+
+const headers = shallowRef<HeaderItem[]>([])
+const showIndent = ref(false)
+
 onContentUpdated(() => {
-  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline);
-  showIndent.value = headers.value.some((header) => {
-    return header.level === 2;
-  });
-});
+  headers.value = getHeaders()
+  showIndent.value = headers.value.some((header) => header.level === 2)
+})
 </script>
+
 <style scoped>
 .category {
   width: 20rem;
@@ -51,7 +50,7 @@ onContentUpdated(() => {
   box-sizing: border-box;
 }
 
-.showIndent {
+.show-indent {
   padding-left: 1rem;
 }
 ul {

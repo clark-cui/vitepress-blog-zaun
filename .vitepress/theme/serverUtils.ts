@@ -1,42 +1,54 @@
-import {globby} from 'globby';
-import matter from "gray-matter";
-import fs from "fs-extra";
-import path from "path";
+import fg from 'fast-glob'
+import matter from 'gray-matter'
+import { readFile } from 'node:fs/promises'
 
-export async function getPosts() {
-  let paths = await getPostMDFilePaths();
-  let posts = await Promise.all(
-    paths.map(async (item) => {
-      const content = await fs.readFile(item, "utf-8");
-      const { data } = matter(content);
-      data.date = _convertDate(data.date);
+export interface PostFrontMatter {
+  date: string
+  title?: string
+  tags?: string[]
+  description?: string
+}
+
+export interface Post {
+  frontMatter: PostFrontMatter
+  regularPath: string
+}
+
+async function getPostMDFilePaths(): Promise<string[]> {
+  return fg(['posts/**/*.md'], {
+    ignore: ['node_modules', 'README.md'],
+  })
+}
+
+function formatDate(date: string | Date = new Date().toString()): string {
+  return new Date(date).toJSON().split('T')[0]
+}
+
+function compareDateDesc(a: Post, b: Post): number {
+  return a.frontMatter.date < b.frontMatter.date ? 1 : -1
+}
+
+export async function getPosts(): Promise<Post[]> {
+  const paths = await getPostMDFilePaths()
+
+  const posts = await Promise.all(
+    paths.map(async (filePath): Promise<Post> => {
+      const content = await readFile(filePath, 'utf-8')
+      const { data } = matter(content)
+      data.date = formatDate(data.date)
+
       return {
-        frontMatter: data,
-        regularPath: `/${item.replace(".md", ".html")}`,
-      };
-    })
-  );
-  posts.sort(_compareDate);
-  return posts;
+        frontMatter: data as PostFrontMatter,
+        regularPath: `/${filePath.replace('.md', '.html')}`,
+      }
+    }),
+  )
+
+  posts.sort(compareDateDesc)
+  return posts
 }
 
-function _convertDate(date = new Date().toString()) {
-  const json_date = new Date(date).toJSON();
-  return json_date.split("T")[0];
-}
-
-function _compareDate(obj1, obj2) {
-  return obj1.frontMatter.date < obj2.frontMatter.date ? 1 : -1;
-}
-
-async function getPostMDFilePaths() {
-  let paths = await globby(["**.md"], {
-    ignore: ["node_modules", "README.md"],
-  });
-  return paths.filter((item) => item.includes("posts/"));
-}
-
-export async function getPostLength() {
-  // getPostMDFilePath return type is object not array
-  return [...(await getPostMDFilePaths())].length;
+export async function getPostLength(): Promise<number> {
+  const paths = await getPostMDFilePaths()
+  return paths.length
 }
