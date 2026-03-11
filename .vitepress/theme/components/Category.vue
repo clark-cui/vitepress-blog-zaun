@@ -28,7 +28,7 @@ const showIndent = ref(false)
 
 onContentUpdated(() => {
   headers.value = getHeaders()
-  showIndent.value = headers.value.some((header) => header.level === 2)
+  showIndent.value = headers.value.some((header: HeaderItem) => header.level === 2)
 })
 </script>
 
