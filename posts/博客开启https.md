@@ -24,7 +24,7 @@ tags:
 
 ### 目标
 
-主域名(clark-cui.top) 与子域名(blog.clark-cui.top, note.clark-cui.top,box.clark-cui.top)均开启 https
+主域名(clarkcui.men) 与子域名(blog.clarkcui.men, note.clarkcui.men,box.clarkcui.men)均开启 https
 
 ### 方案
 
@@ -84,7 +84,7 @@ sudo systemctl status nginx //检查其运行状态
 
 这次踩坑花了一下午时间，报错的时候去看日志，能看到错误的信息，但由于我不知道是啥，所以信息也没啥用，还得靠 Google,所以我还是得恶补一下操作系统的知识。
 
-~~然后刚又发现了新问题，站点是 https 的，但我博客文章里的图片，之前上传到七牛云图床的时候，绑定的域名是 cdn.clark-cui.top，是 http 的...在 https 的站点里就不加载了....要搞的话，得把 cdn 的域名也弄成 https...我醉了。想了下，我之前搞的这个图床 cdn 使用率基本小于 1%，目前没需求那就是没用，我还是把原图扣出来吧。~~
+~~然后刚又发现了新问题，站点是 https 的，但我博客文章里的图片，之前上传到七牛云图床的时候，绑定的域名是 cdn.clarkcui.men，是 http 的...在 https 的站点里就不加载了....要搞的话，得把 cdn 的域名也弄成 https...我醉了。想了下，我之前搞的这个图床 cdn 使用率基本小于 1%，目前没需求那就是没用，我还是把原图扣出来吧。~~
 
 Done,
 

@@ -54,7 +54,7 @@ export default async () => {
       { icon: 'github', link: 'https://github.com/clark-cui', ariaLabel: 'GitHub' },
       { icon: 'twitter', link: 'https://twitter.com/qingshuihe1', ariaLabel: 'Twitter' },
       { icon: { svg: EMAIL_ICON_SVG }, link: 'mailto:rongchuancui@gmail.com', ariaLabel: 'Email' },
-      { icon: { svg: RSS_ICON_SVG }, link: 'https://clark-cui.top/feed.xml', ariaLabel: 'RSS' },
+      { icon: { svg: RSS_ICON_SVG }, link: 'https://clarkcui.men/feed.xml', ariaLabel: 'RSS' },
     ],
     aside: false,
     showFireworksAnimation: false,
