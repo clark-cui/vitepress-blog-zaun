@@ -48,7 +48,54 @@ export async function getPosts(): Promise<Post[]> {
   return posts
 }
 
-export async function getPostLength(): Promise<number> {
-  const paths = await getPostMDFilePaths()
-  return paths.length
+// ============ Notes Module ============
+
+export interface NoteItem {
+  title: string
+  path: string
+}
+
+export interface NoteCategory {
+  name: string
+  items: NoteItem[]
+}
+
+export async function getNotesSidebar(): Promise<NoteCategory[]> {
+  const paths = await fg(['notes/**/*.md'], {
+    ignore: ['node_modules', 'notes/README.md'],
+  })
+
+  // Group by directory
+  const categoryMap = new Map<string, NoteItem[]>()
+
+  for (const filePath of paths) {
+    const content = await readFile(filePath, 'utf-8')
+    const { data } = matter(content)
+    // e.g. "notes/02-Ethereum/01-公钥与私钥.md" → dir = "02-Ethereum"
+    const parts = filePath.split('/')
+    const dir = parts[1] ?? ''
+    const title = data.title || parts[parts.length - 1].replace('.md', '')
+
+    if (!categoryMap.has(dir)) {
+      categoryMap.set(dir, [])
+    }
+    categoryMap.get(dir)!.push({
+      title,
+      path: `/${filePath.replace('.md', '.html')}`,
+    })
+  }
+
+  // Sort categories by dir name, sort items within each category
+  const categories: NoteCategory[] = []
+  const sortedDirs = [...categoryMap.keys()].sort()
+
+  for (const dir of sortedDirs) {
+    const items = categoryMap.get(dir)!
+    items.sort((a, b) => a.path.localeCompare(b.path))
+    // Clean up dir name: "02-Ethereum" → "Ethereum"
+    const name = dir.replace(/^\d+-/, '')
+    categories.push({ name, items })
+  }
+
+  return categories
 }

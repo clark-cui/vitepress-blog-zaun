@@ -16,11 +16,16 @@
     <template #home-features-after>
       <Page />
     </template>
+    <template v-if="isNotesPage" #page-top>
+      <NotesLayout />
+    </template>
   </Layout>
   <CopyWright />
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import HomeHero from './HomeHero.vue'
 import CopyWright from './CopyWright.vue'
@@ -28,8 +33,12 @@ import Comments from './Comments.vue'
 import Page from './Page.vue'
 import Category from './Category.vue'
 import Title from './Title.vue'
+import NotesLayout from './NotesLayout.vue'
 
 const { Layout } = DefaultTheme
+const { page } = useData()
+
+const isNotesPage = computed(() => page.value.relativePath.startsWith('notes/'))
 
 function goBack(): void {
   history.back()

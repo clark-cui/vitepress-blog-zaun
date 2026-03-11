@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import mathjax3 from 'markdown-it-mathjax3'
-import { getPosts, getPostLength } from './theme/serverUtils'
+import { getPosts, getNotesSidebar } from './theme/serverUtils'
 import { buildBlogRSS } from './theme/rss'
-import type { Post } from './theme/serverUtils'
+import type { Post, NoteCategory } from './theme/serverUtils'
 
 // Extend VitePress DefaultTheme.Config with custom blog fields
 interface BlogThemeConfig {
@@ -14,6 +14,7 @@ interface BlogThemeConfig {
   posts: Post[]
   pageSize: number
   postLength: number
+  notesSidebar: NoteCategory[]
   nav: { text: string; link: string }[]
   socialLinks: { icon: string | { svg: string }; link: string }[]
   aside: boolean
@@ -25,9 +26,9 @@ const EMAIL_ICON_SVG = `<svg role="img" viewBox="0 0 1024 1024" xmlns="http://ww
 </svg>`
 
 export default async () => {
-  const [posts, postLength] = await Promise.all([
+  const [posts, notesSidebar] = await Promise.all([
     getPosts(),
-    getPostLength(),
+    getNotesSidebar(),
   ])
 
   const themeConfig: BlogThemeConfig = {
@@ -37,9 +38,11 @@ export default async () => {
     docsDir: '/',
     posts,
     pageSize: 5,
-    postLength,
+    postLength: posts.length,
+    notesSidebar,
     nav: [
       { text: '🏡Blogs', link: '/' },
+      { text: '📒Notes', link: notesSidebar[0]?.items[0]?.path ?? '/notes/' },
       { text: '🔖Tags', link: '/tags' },
       { text: '📃Archives', link: '/archives' },
       { text: '🔥RSS', link: 'https://clark-cui.top/feed.xml' },
@@ -74,6 +77,16 @@ export default async () => {
       codeTransformers: [transformerTwoslash() as any],
       config: (md) => {
         md.use(mathjax3)
+
+        // Mermaid: convert ```mermaid code blocks to <pre class="mermaid"> for client-side rendering
+        const defaultFence = md.renderer.rules.fence!.bind(md.renderer.rules)
+        md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+          const token = tokens[idx]
+          if (token.info.trim() === 'mermaid') {
+            return `<pre class="mermaid">${md.utils.escapeHtml(token.content)}</pre>`
+          }
+          return defaultFence(tokens, idx, options, env, self)
+        }
       },
     },
   })

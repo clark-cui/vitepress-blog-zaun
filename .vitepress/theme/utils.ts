@@ -48,7 +48,13 @@ export interface HeaderItem {
 }
 
 export function getHeaders(): HeaderItem[] {
-  return [...document.querySelectorAll('.VPDoc h2,h3,h4,h5,h6')]
+  // Query headings within .vp-doc (blog posts and notes after class is applied).
+  // Fall back to .VPPage to handle the timing race where NotesOutline mounts
+  // before NotesLayout's applyVpDocClass() has run.
+  const container = document.querySelector('.vp-doc') ?? document.querySelector('.VPPage')
+  if (!container) return []
+
+  return [...container.querySelectorAll(':is(h2, h3, h4, h5, h6)')]
     .filter((el) => el.id && el.hasChildNodes())
     .map((el) => ({
       title: serializeHeader(el),
