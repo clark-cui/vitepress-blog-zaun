@@ -119,6 +119,7 @@
   }
   .about-page {
     padding: 32px 20px;
+    padding-bottom:80px;
   }
 }
 </style>
