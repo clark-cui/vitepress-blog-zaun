@@ -8,9 +8,7 @@ import Gitalk from 'gitalk'
 import { onContentUpdated } from 'vitepress'
 
 function clearChildren(element: Element): void {
-  while (element.lastElementChild) {
-    element.removeChild(element.lastElementChild)
-  }
+  element.replaceChildren()
 }
 
 onContentUpdated(() => {

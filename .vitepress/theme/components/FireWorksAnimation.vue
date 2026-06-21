@@ -11,7 +11,7 @@ import { useData } from "vitepress";
 const { theme } = useData();
 
 // get fireworks animation control
-let showFireworksAnimation = theme.value.showFireworksAnimation;
+const showFireworksAnimation = theme.value.showFireworksAnimation;
 </script>
 
 <style scoped>

@@ -125,7 +125,7 @@ function applyVpDocClass(): void {
 nextTick(() => {
 const vpPage = document.querySelector('.VPPage')
 if (!vpPage) return
-for (const child of Array.from(vpPage.children)) {
+for (const child of vpPage.children) {
 if (
 !child.classList.contains('notes-sidebar-panel') &&
 !child.classList.contains('notes-outline-panel') &&

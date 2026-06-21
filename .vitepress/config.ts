@@ -15,8 +15,11 @@ interface BlogThemeConfig {
   pageSize: number
   postLength: number
   notesSidebar: NoteCategory[]
-  nav: any[]
-  socialLinks: any[]
+  nav: { text: string; link: string }[]
+  socialLinks: (
+    | { icon: string; link: string; ariaLabel: string }
+    | { icon: { svg: string }; link: string; ariaLabel: string }
+  )[]
   aside: boolean
   showFireworksAnimation: boolean
 }

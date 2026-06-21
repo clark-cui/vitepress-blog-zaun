@@ -69,7 +69,7 @@ function setupObserver(): void {
 
 function refreshHeaders(): void {
   headers.value = getHeaders()
-  setTimeout(setupObserver, 100)
+  nextTick(setupObserver)
 }
 
 function scrollTo(link: string): void {

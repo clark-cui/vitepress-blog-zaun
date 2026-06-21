@@ -21,7 +21,8 @@ async function getPostMDFilePaths(): Promise<string[]> {
 }
 
 function formatDate(date: string | Date = new Date().toString()): string {
-  return new Date(date).toJSON().split('T')[0]
+  const d = new Date(date)
+  return Number.isNaN(d.getTime()) ? '' : d.toISOString().slice(0, 10)
 }
 
 function compareDateDesc(a: Post, b: Post): number {

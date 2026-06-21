@@ -45,7 +45,7 @@ async function generateRSSItems(): Promise<Item[]> {
       .map(async (file) => {
         const raw = await readFile(file, 'utf-8')
         const { data, content } = matter(raw)
-        const html = md.render(content).replace('src="/', `src="${DOMAIN}/`)
+        const html = md.render(content).replaceAll('src="/', `src="${DOMAIN}/`)
 
         return {
           ...data,

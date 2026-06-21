@@ -1,6 +1,7 @@
 import Theme from 'vitepress/theme'
 import type { EnhanceAppContext } from 'vitepress'
 import { inBrowser } from 'vitepress'
+import { nextTick } from 'vue'
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 import '@shikijs/vitepress-twoslash/style.css'
 
@@ -11,7 +12,7 @@ import './custom.css'
 
 // Client-side mermaid rendering
 async function renderMermaid(): Promise<void> {
-  const elements = document.querySelectorAll('pre.mermaid')
+  const elements = document.querySelectorAll<HTMLElement>('pre.mermaid')
   if (elements.length === 0) return
 
   const { default: mermaid } = await import('mermaid')
@@ -20,7 +21,7 @@ async function renderMermaid(): Promise<void> {
     startOnLoad: false,
     theme: isDark ? 'dark' : 'default',
   })
-  await mermaid.run({ nodes: elements as any })
+  await mermaid.run({ nodes: elements })
 }
 
 export default {
@@ -34,7 +35,7 @@ export default {
     if (inBrowser) {
       router.onAfterRouteChanged = () => {
         // Wait for DOM to update then render mermaid
-        setTimeout(renderMermaid, 100)
+        nextTick(renderMermaid)
       }
     }
   },
