@@ -1,0 +1,8 @@
+allowBuilds:
+  esbuild: true
+overrides:
+  gitalk>axios: ^0.21.4
+  follow-redirects: ^1.15.6
+  gray-matter>js-yaml: ^4.1.2
+patchedDependencies:
+  gray-matter: patches/gray-matter.patch
