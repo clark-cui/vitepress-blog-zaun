@@ -6,20 +6,20 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@shikijs/vitepress-twoslash": "^3.23.0",
-    "@types/markdown-it": "^14.1.2",
-    "@types/node": "^25.9.4",
-    "dayjs": "^1.11.21",
+    "@shikijs/vitepress-twoslash": "^4.6.0",
+    "@types/markdown-it": "^14.2.0",
+    "@types/node": "^24.19.2",
+    "dayjs": "^1.11.23",
     "fast-glob": "^3.3.3",
-    "feed": "^4.2.2",
+    "feed": "^6.0.0",
     "gray-matter": "^4.0.3",
-    "markdown-it": "^14.2.0",
+    "markdown-it": "^15.0.3",
     "markdown-it-mathjax3": "^4.3.2",
-    "mermaid": "^11.15.0",
-    "shiki": "^3.23.0",
-    "typescript": "^5.9.3",
+    "mermaid": "^12.3.0",
+    "shiki": "^4.6.0",
+    "typescript": "^6.0.3",
     "vitepress": "^1.6.4",
-    "vue": "^3.5.38"
+    "vue": "^3.5.46"
   },
   "engines": {
     "node": ">=24.14.0"

@@ -9,10 +9,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v2.1.4 # 使用node环境
+      - name: Use project Node.js version
+        uses: actions/setup-node@v4 # 使用node环境
         with:
-          node-version: '18.x' # 版本12
+          node-version-file: .nvmrc
 
       # - name: Cache node modules
       #   id: cache # 缓存id
@@ -24,11 +24,11 @@ jobs:
       #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
 
       - name: Install pnpm
-        run: npm i pnpm -g
+        run: npm i pnpm@12.21.0 -g
 
       - name: Install Dependencies
         # if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
-        run: pnpm i # 安装依赖
+        run: pnpm install --frozen-lockfile # 安装依赖
 
       - name: Build Packages
         run: pnpm run build #  打包文件
